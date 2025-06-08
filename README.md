@@ -84,7 +84,7 @@ Follow these steps to get a local copy of the project up and running.
 2.  **Set up the Server:**
     ```bash
     cd server
-    npm install
+    npm install --legacy-peer-deps
     ```
     *   Create a `.env` file in the `server` directory and add the following keys:
         ```env
@@ -102,7 +102,7 @@ Follow these steps to get a local copy of the project up and running.
     *   Open a new terminal window. From the root `blog-fullstack` folder, navigate to the client:
         ```bash
         cd client
-        npm install
+        npm install --legacy-peer-deps
         ```
     *   Create a `.env` file in the `client` directory and add the backend API URL:
         ```env
