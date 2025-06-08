@@ -19,11 +19,28 @@ const server = http.createServer(app);
 
 // Create a new Socket.IO server and attach it to the HTTP server.
 // It's crucial to configure CORS here as well for the WebSocket connection.
+// --- THIS IS THE CORRECTED CORS CONFIGURATION ---
+const allowedOrigins = [
+  "http://localhost:5173", // For your local development
+  process.env.CLIENT_URL,  // For your live frontend
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
 const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173", // Your React client's URL
-    methods: ["GET", "POST", "PUT", "DELETE"]
-  }
+  cors: corsOptions
 });
 
 // Pass the `io` instance to our socket handler
