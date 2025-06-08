@@ -119,7 +119,6 @@ Follow these steps to get a local copy of the project up and running.
 ## ✨ Future Enhancements
 
 *   **Pagination / Infinite Scrolling** for the main post feed to improve performance.
-*   A **global, real-time notification system** for likes, comments, and follows.
 *   **Full-Text Search** functionality for finding posts and users.
 *   **Chat "Read Receipts"** to show when a message has been seen.
 *   **User Roles** (Admin/Moderator) with special permissions.
