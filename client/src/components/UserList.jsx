@@ -51,7 +51,7 @@ function UserList() {
                                 {users.slice(0, 4).map((user, index) => (
                                     <img 
                                         key={index}
-                                        src={getImageUrl(/images/default_profile.jpg)} 
+                                        src={getImageUrl("/images/default_profile.jpg")} 
                                         className="w-8 h-8 rounded-full border-2 border-gray-800 shadow-md"
                                         alt={user.username}
                                     />
@@ -116,7 +116,7 @@ function UserList() {
                                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur opacity-20 group-hover:opacity-30 transition-opacity"></div>
                                             <div className="relative">
                                                 <img 
-                                                    src={getImageUrl(/images/default_profile.jpg)} 
+                                                    src={getImageUrl("/images/default_profile.jpg")} 
                                                     className="w-16 h-16 rounded-full border-2 border-purple-500/80 shadow-lg group-hover:border-cyan-400/80 transition-colors"
                                                     alt={user.username}
                                                 />
