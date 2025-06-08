@@ -12,8 +12,8 @@ It serves as a demonstration of building complex, real-time applications from th
 
 Experience Blog Verse live!
 
-*   **Frontend (Deployed on Vercel):** [https://your-vercel-app-url.vercel.app](https://your-vercel-app-url.vercel.app)  <-- **Replace with your actual Vercel URL**
-*   **Backend API (Deployed on Render):** [https://blog-fullstack-wjoy.onrender.com](https://blog-fullstack-wjoy.onrender.com) <-- **Replace with your actual Render URL**
+*   **Frontend (Deployed on Vercel):** [https://your-vercel-app-url.vercel.app](https://blog-fullstack-neon.vercel.app/)
+*   **Backend API (Deployed on Render):** [https://blog-fullstack-wjoy.onrender.com](https://blog-fullstack-wjoy.onrender.com)
     *(Note: This is a backend API only. You won't see a website here, but it's the server powering the frontend.)*
 
 ## 📦 Features
