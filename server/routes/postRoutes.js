@@ -10,8 +10,8 @@ router.use(authMiddleware);
 
 router.use('/images', express.static(path.join(__dirname, '../uploads')));
 
-router.post('/', upload.single('image'), postController.createPost);
-router.put('/:id', upload.single('image'), postController.updatePost);
+router.post('/', upload, postController.createPost);
+router.put('/:id', upload, postController.updatePost);
 router.post('/', postController.createPost);
 router.put('/:id', postController.updatePost);
 router.get('/', postController.getPosts);

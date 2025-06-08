@@ -25,11 +25,13 @@ exports.updateProfile = async (req, res) => {
   const { username, email, bio, avatar } = req.body; // Include avatar
   try {
     const updateData = { username, email, bio };
-    if (avatar) updateData.avatar = avatar; // Only update avatar if provided
+    if (req.files && req.files.length > 0) {
+      updateData.avatar = req.files[0].path;
+    }
 
     const user = await User.findByIdAndUpdate(
       req.userId,
-      updateData,
+      { $set: updateData },
       { new: true, runValidators: true }
     ).select('-password');
     

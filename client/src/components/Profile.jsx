@@ -12,6 +12,18 @@ export default function Profile() {
   const [loading, setLoading] = useState(true); // Added loading state
   const [modalOpen, setModalOpen] = useState(false);
   const [modalListType, setModalListType] = useState('');
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => setImagePreview(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
 
   const openFollowModal = (type) => {
     setModalListType(type);
@@ -46,14 +58,34 @@ export default function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) return;
+
+    // Create FormData to handle the file upload. This is required for sending files.
+    const formData = new FormData();
+
+    // Add the text fields to the FormData object, just like you were doing before.
+    formData.append('username', user.username);
+    formData.append('bio', user.bio);
+
+    // IMPORTANT: Conditionally add the new avatar file ONLY if the user has selected one.
+    if (image) {
+      formData.append('avatar', image);
+    }
+
     try {
-      // Prepare user data, don't send follower/following arrays for update
-      const { followers, following, followerCount, followingCount, ...userDataToUpdate } = user;
-      await api.put('/users/me', userDataToUpdate);
+      // Make the API call using the FormData object.
+      // The third argument with the header is crucial for file uploads.
+      await api.put('/users/me', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+
+      // On success, reset everything and fetch the updated profile.
       setEditing(false);
-      fetchProfile(); 
+      setImage(null); // Reset the file state
+      setImagePreview('');   // Reset the preview state
+      fetchProfile(); // This will now show the new avatar from Cloudinary
     } catch (err) {
       console.error("Error updating profile:", err);
+      // We can add a user-facing error message here later.
     }
   };
 
@@ -150,7 +182,26 @@ export default function Profile() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                  <div className="relative"> <label htmlFor="avatar" className="block text-xs font-medium text-gray-300 mb-1.5"> Avatar URL </label> <div className="relative"> <input type="text" id="avatar" name="avatar" value={user.avatar || ''} onChange={handleChange} className="w-full px-3 py-2.5 bg-gray-800/60 border border-gray-700/60 rounded-xl text-white placeholder-gray-400/70 focus:border-purple-500/70 focus:outline-none focus:ring-1 focus:ring-purple-900/40 transition-all backdrop-blur-sm text-sm" placeholder="Paste image URL" /> <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400/70"> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /> </svg> </div> </div> </div>
+                  <div>
+                    <label htmlFor="avatar-upload" className="block text-xs font-medium text-gray-300 mb-1.5">
+                      Profile Picture
+                    </label>
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={imagePreview || getAvatarSrc(user)} // Show preview if it exists, otherwise show current avatar
+                        alt="Avatar Preview"
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
+                      <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-800/50 file:text-purple-200 hover:file:bg-purple-700/60"
+                      />
+                    </div>
+                  </div>
                   <div> <label htmlFor="username" className="block text-xs font-medium text-gray-300 mb-1.5"> Username </label> <div className="relative"> <input type="text" name="username" value={user.username || ''} onChange={handleChange} className="w-full px-3 py-2.5 bg-gray-800/60 border border-gray-700/60 rounded-xl text-white placeholder-gray-400/70 focus:border-purple-500/70 focus:outline-none focus:ring-1 focus:ring-purple-900/40 transition-all backdrop-blur-sm text-sm" placeholder="Enter username" /> <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400/70"> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /> </svg> </div> </div> </div>
                 </div>
                 <div> <label htmlFor="bio" className="block text-xs font-medium text-gray-300 mb-1.5"> Bio </label> <div className="relative"> <textarea name="bio" value={user.bio || ''} onChange={handleChange} className="w-full px-3 py-2.5 bg-gray-800/60 border border-gray-700/60 rounded-xl text-white placeholder-gray-400/70 focus:border-purple-500/70 focus:outline-none focus:ring-1 focus:ring-purple-900/40 transition-all backdrop-blur-sm text-sm" placeholder="Tell us about yourself..." rows="3" /> <div className="absolute right-3 top-3 text-gray-400/70"> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" /> </svg> </div> </div> </div>
