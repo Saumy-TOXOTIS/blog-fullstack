@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import NotificationBell from './NotificationBell';
+import { getImageUrl } from '../utils/imageUrl';
 
 // --- Desktop NavLink Component (No Changes) ---
 const DesktopNavLink = ({ to, text, icon, color, onClick }) => (
@@ -48,7 +49,7 @@ function Navbar({ isAuthenticated, logout }) {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}>
-            <img src={"http://localhost:5000/images/Blog.svg"} className="h-12 w-12 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110" alt="App Icon" />
+            <img src={getImageUrl("/images/Blog.svg")} className="h-12 w-12 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110" alt="App Icon" />
             <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">Blog <span className="font-extrabold">App</span></h1>
           </div>
 
@@ -93,7 +94,7 @@ function Navbar({ isAuthenticated, logout }) {
           <div className="relative h-full bg-[#111827e6] rounded-2xl border border-purple-500/20 p-6 flex flex-col">
             <div className="absolute -inset-px rounded-2xl -z-10 bg-gradient-to-r from-purple-600 via-cyan-500 to-purple-600 animate-gradient-border"></div>
             <div className="flex items-center gap-3 mb-10">
-              <img src={"http://localhost:5000/images/Blog.svg"} className="h-10 w-10" alt="App Icon" />
+              <img src={getImageUrl("/images/Blog.svg")} className="h-10 w-10" alt="App Icon" />
               <h2 className="text-xl font-bold">Menu</h2>
             </div>
             <div className="flex flex-col gap-y-2">
