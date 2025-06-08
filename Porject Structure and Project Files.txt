@@ -9,22 +9,23 @@ blog-fullstack
 ///components
 ////AboutPage.jsx
 // client/src/components/AboutPage.jsx
+// client/src/components/AboutPage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// A reusable card component for showcasing technologies and features
+// Enhanced card component with improved animations and visuals
 const InfoCard = ({ icon, title, description, color }) => (
-    <div className={`relative bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 overflow-hidden group hover:border-${color}-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-${color}-900/20 transform hover:-translate-y-1`}>
-        <div className="absolute inset-0 -z-10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className={`absolute -inset-[2px] bg-gradient-to-r from-${color}-500/10 to-cyan-400/10 rounded-xl blur-sm`}></div>
+    <div className={`relative bg-gradient-to-br from-gray-900/60 to-gray-800/40 border border-gray-700/50 rounded-2xl p-6 overflow-hidden group hover:border-${color}-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-${color}-900/30 transform hover:-translate-y-2 hover:scale-[1.02] z-0`}>
+        <div className="absolute inset-0 -z-10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className={`absolute -inset-[3px] bg-gradient-to-r from-${color}-500/20 to-cyan-400/20 rounded-xl blur-md animate-pulse-slow`}></div>
         </div>
         <div className="flex items-center gap-4 mb-4">
-            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br from-${color}-600/30 to-${color}-700/30 flex items-center justify-center border border-${color}-500/30`}>
-                <span className="text-2xl">{icon}</span>
+            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br from-${color}-600/40 to-${color}-700/40 flex items-center justify-center border border-${color}-500/40 backdrop-blur-sm group-hover:shadow-lg group-hover:shadow-${color}-900/30 transition-all duration-300`}>
+                <span className="text-3xl opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-transform duration-300">{icon}</span>
             </div>
-            <h3 className={`text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-${color}-300 to-cyan-300`}>{title}</h3>
+            <h3 className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-${color}-300 to-cyan-300 group-hover:drop-shadow-[0_0_8px_rgba(125,211,252,0.5)] transition-all duration-500`}>{title}</h3>
         </div>
-        <p className="text-gray-400 leading-relaxed">{description}</p>
+        <p className="text-gray-400 leading-relaxed group-hover:text-gray-200 transition-colors duration-500">{description}</p>
     </div>
 );
 
@@ -33,87 +34,145 @@ function AboutPage() {
     const token = localStorage.getItem('token');
 
     const technologies = [
-        { icon: '💻', title: 'React', description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces, powering our entire dynamic frontend.', color: 'cyan' },
-        { icon: '⚙️', title: 'Node.js & Express', description: 'The backbone of our server, providing a fast and scalable environment for our API and real-time communication.', color: 'green' },
-        { icon: '🍃', title: 'MongoDB', description: 'A flexible NoSQL database that allows us to store and manage complex data structures for users, posts, and chats with ease.', color: 'emerald' },
-        { icon: '⚡️', title: 'Socket.IO', description: 'Enabling real-time, bi-directional communication for our instant messaging feature, making chats seamless and interactive.', color: 'yellow' },
+        { icon: '⚛️', title: 'React', description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces, powering our entire dynamic frontend.', color: 'cyan' },
+        { icon: '🚀', title: 'Node.js & Express', description: 'The backbone of our server, providing a fast and scalable environment for our API and real-time communication.', color: 'green' },
+        { icon: '🗄️', title: 'MongoDB', description: 'A flexible NoSQL database that allows us to store and manage complex data structures for users, posts, and chats with ease.', color: 'emerald' },
+        { icon: '🔌', title: 'Socket.IO', description: 'Enabling real-time, bi-directional communication for our instant messaging feature, making chats seamless and interactive.', color: 'yellow' },
         { icon: '🎨', title: 'Tailwind CSS', description: 'A utility-first CSS framework that allows for rapid, custom UI development, giving the app its unique cosmic look.', color: 'sky' },
-        { icon: '🔑', title: 'JWT', description: 'JSON Web Tokens are used for securing our application, ensuring that user sessions and API requests are properly authenticated.', color: 'rose' },
+        { icon: '🔐', title: 'JWT', description: 'JSON Web Tokens are used for securing our application, ensuring that user sessions and API requests are properly authenticated.', color: 'rose' },
     ];
 
     const features = [
-        { icon: '✍️', title: 'Dynamic Post Management', description: 'Users can create, edit, and delete their own blog posts, complete with image uploads and rich content.', color: 'purple' },
-        { icon: '❤️', title: 'Social Interaction', description: 'Engage with the community through post likes, a full-featured follow/unfollow system, and user profiles.', color: 'pink' },
+        { icon: '📝', title: 'Dynamic Post Management', description: 'Users can create, edit, and delete their own blog posts, complete with image uploads and rich content.', color: 'purple' },
+        { icon: '👥', title: 'Social Interaction', description: 'Engage with the community through post likes, a full-featured follow/unfollow system, and user profiles.', color: 'pink' },
         { icon: '💬', title: 'Real-Time Chat', description: 'A complete private messaging system with live updates, message editing, deletion, and conversation management.', color: 'indigo' },
-        { icon: 'Nested Comments', title: 'Nested Comments', description: 'Deeply nested comment threads on posts allow for structured and engaging discussions within the community.', color: 'blue' },
+        { icon: '💭', title: 'Nested Comments', description: 'Deeply nested comment threads on posts allow for structured and engaging discussions within the community.', color: 'blue' },
     ];
 
     return (
-        <div className="flex-grow bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white p-4 md:p-8 min-h-screen">
-            <div className="max-w-5xl mx-auto">
-                {/* Hero Section */}
+        <div className="flex-grow bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white p-4 md:p-8 min-h-screen overflow-hidden">
+            {/* Animated cosmic background elements */}
+            <div className="fixed inset-0 -z-10">
+                <div className="absolute top-[20%] left-[10%] w-64 h-64 bg-purple-600/10 rounded-full blur-[100px] animate-float-1"></div>
+                <div className="absolute top-[40%] right-[15%] w-72 h-72 bg-cyan-600/10 rounded-full blur-[120px] animate-float-2"></div>
+                <div className="absolute bottom-[15%] left-[25%] w-60 h-60 bg-indigo-600/10 rounded-full blur-[90px] animate-float-3"></div>
+            </div>
+            
+            <div className="max-w-6xl mx-auto">
+                {/* Enhanced Hero Section */}
                 <div className="text-center py-16 md:py-24 relative">
                     <div className="absolute inset-0 -z-10">
-                        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
+                        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-600/15 via-blue-600/15 to-cyan-600/15 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg">
+                    <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg animate-text-pulse">
                         A Cosmos of Ideas
                     </h1>
-                    <p className="mt-6 text-lg md:text-xl text-gray-300/90 max-w-2xl mx-auto">
+                    <p className="mt-6 text-xl md:text-2xl text-gray-300/90 max-w-3xl mx-auto bg-gray-900/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50">
                         This platform is more than just a blog. It's a fully-featured, modern social application built from the ground up to showcase the power of the MERN stack and real-time technologies.
                     </p>
                 </div>
 
                 {/* Technology Section */}
-                <section className="my-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">Powered by the Stars</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <section className="my-16 relative">
+                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent rounded-full blur-sm"></div>
+                    <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent inline-block">Powered by the Stars</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {technologies.map(tech => <InfoCard key={tech.title} {...tech} />)}
                     </div>
                 </section>
 
                 {/* Features Section */}
-                <section className="my-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">Explore the Galaxy of Features</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section className="my-24 relative">
+                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full blur-sm"></div>
+                    <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent inline-block">Explore the Galaxy of Features</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {features.map(feature => <InfoCard key={feature.title} {...feature} />)}
                     </div>
                 </section>
 
-                {/* Creator Section */}
-                <section className="my-16">
-                    <div className="bg-gray-800/20 border border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-lg shadow-2xl hover:shadow-purple-900/20 transition-all duration-500 group transform hover:-translate-y-1">
-                        <div className="flex flex-col md:flex-row items-center gap-8">
+                {/* Enhanced Creator Section */}
+                <section className="my-20">
+                    <div className="bg-gradient-to-br from-gray-800/30 to-gray-900/20 border border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-lg shadow-2xl hover:shadow-purple-900/30 transition-all duration-700 group transform hover:-translate-y-1 relative overflow-hidden">
+                        <div className="absolute -inset-2 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-cyan-500/10 rounded-3xl animate-pulse-slow"></div>
+                        </div>
+                        <div className="flex flex-col md:flex-row items-center gap-10">
                             <div className="relative flex-shrink-0">
-                                <div className="w-32 h-32 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 p-1 animate-gradient-border">
-                                    <div className="bg-gray-900 rounded-full p-1.5 h-full"><div className="bg-gray-800/80 rounded-full w-full h-full flex items-center justify-center"><span className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">ST</span></div></div>
+                                <div className="w-36 h-36 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 p-1.5 shadow-lg shadow-purple-500/30 animate-pulse-slow">
+                                    <div className="bg-gray-900 rounded-full p-1.5 h-full">
+                                        <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-full w-full h-full flex items-center justify-center">
+                                            <span className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">ST</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="text-center md:text-left">
-                                <p className="text-lg text-gray-400/80 mb-1">Project Architect</p>
-                                <h3 className="text-4xl font-bold mt-1 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Saumy Tiwari</h3>
-                                <p className="mt-4 text-gray-300 max-w-lg">A passionate Full Stack Developer dedicated to building beautiful, functional, and scalable web applications. This project is a testament to the journey of learning and creating with modern web technologies.</p>
-                                <div className="mt-6 flex justify-center md:justify-start gap-4">
-                                    <button className="px-5 py-2 bg-gray-800/70 hover:bg-gray-700/90 border border-gray-700/50 rounded-xl text-gray-300 hover:text-white transition-all duration-300 font-medium">GitHub</button>
-                                    <button className="px-5 py-2 bg-gradient-to-r from-purple-600/80 to-blue-500/80 hover:from-purple-600 hover:to-blue-500 border border-purple-500/30 rounded-xl text-white transition-all duration-300 font-medium shadow-md hover:shadow-purple-500/20">Portfolio</button>
+                                <p className="text-lg text-cyan-400/80 mb-1 font-light">Project Architect</p>
+                                <h3 className="text-5xl font-bold mt-1 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg">Saumy Tiwari</h3>
+                                <p className="mt-6 text-gray-300 max-w-2xl text-lg leading-relaxed bg-gray-900/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50">
+                                    A passionate Full Stack Developer dedicated to building beautiful, functional, and scalable web applications. This project is a testament to the journey of learning and creating with modern web technologies.
+                                </p>
+                                <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+                                    <button onClick={() => window.open("https://github.com/Saumy-TOXOTIS", "_blank")} className="cursor-pointer px-6 py-3 bg-gray-800/70 hover:bg-gray-700/90 border border-gray-700/50 rounded-xl text-gray-300 hover:text-white transition-all duration-300 font-medium hover:shadow-lg hover:shadow-gray-700/20 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                        </svg>
+                                        GitHub
+                                    </button>
+                                    <button className="px-6 py-3 bg-gradient-to-r from-purple-600/80 to-blue-500/80 hover:from-purple-600 hover:to-blue-500 border border-purple-500/30 rounded-xl text-white transition-all duration-300 font-medium shadow-lg hover:shadow-purple-500/30 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                                            <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                                        </svg>
+                                        Portfolio
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Call to Action */}
-                <div className="text-center py-16">
-                    <h2 className="text-3xl font-bold mb-4">Ready to Join the Journey?</h2>
-                    <p className="text-gray-400 mb-8 max-w-lg mx-auto">Become a part of our growing community. Share your thoughts, connect with others, and start your own blog today.</p>
+                {/* Enhanced Call to Action */}
+                <div className="text-center py-16 relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-xl h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full blur-sm"></div>
+                    <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">Ready to Join the Journey?</h2>
+                    <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">Become a part of our growing community. Share your thoughts, connect with others, and start your own blog today.</p>
                     <button
                         onClick={() => navigate(token ? '/dashboard' : '/register')}
-                        className="px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-900/40 transform hover:scale-105"
+                        className="px-10 py-5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-2xl text-white font-bold text-lg transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-purple-900/50 transform hover:scale-105 relative overflow-hidden group"
                     >
-                        {token ? 'Go to Your Dashboard' : 'Create an Account'}
+                        <span className="relative z-10">{token ? 'Go to Your Dashboard' : 'Create an Account'}</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-700/30 to-indigo-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </button>
                 </div>
             </div>
+
+            {/* Add global animations */}
+            <style jsx>{`
+                @keyframes float-1 {
+                    0%, 100% { transform: translateY(0) translateX(0); }
+                    50% { transform: translateY(-20px) translateX(10px); }
+                }
+                @keyframes float-2 {
+                    0%, 100% { transform: translateY(0) translateX(0); }
+                    50% { transform: translateY(15px) translateX(-15px); }
+                }
+                @keyframes float-3 {
+                    0%, 100% { transform: translateY(0) translateX(0); }
+                    50% { transform: translateY(-10px) translateX(-10px); }
+                }
+                @keyframes text-pulse {
+                    0%, 100% { background-size: 100% 100%; background-position: left center; }
+                    50% { background-size: 200% 200%; background-position: right center; }
+                }
+                .animate-float-1 { animation: float-1 12s ease-in-out infinite; }
+                .animate-float-2 { animation: float-2 15s ease-in-out infinite; }
+                .animate-float-3 { animation: float-3 18s ease-in-out infinite; }
+                .animate-text-pulse { 
+                    animation: text-pulse 6s ease infinite;
+                    background-size: 200% 200%;
+                }
+            `}</style>
         </div>
     );
 }
@@ -124,6 +183,7 @@ export default AboutPage;
 import { useState } from 'react';
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUrl';
 
 function AuthForm({ isLogin: initialIsLogin = true }) {
   const navigate = useNavigate();
@@ -267,7 +327,7 @@ function AuthForm({ isLogin: initialIsLogin = true }) {
                 
                 {/* Logo Image */}
                 <img 
-                  src={"http://localhost:5000/images/Blog.svg"} 
+                  src={getImageUrl("/images/Blog.svg")} 
                   className="w-14 h-14 transition-all duration-500 group-hover/logo:scale-110 group-hover/logo:brightness-110"
                   alt="App Icon"
                 />
@@ -637,6 +697,7 @@ export default ChatPage;
 // client/src/components/Comment.jsx
 import React, { useState } from 'react';
 import api from '../utils/api';
+import { getImageUrl } from '../utils/imageUrl';
 
 // ReplyForm sub-component (can be in its own file if preferred)
 function ReplyForm({ postId, parentId, onCommentAdded, onCancel, currentUserId }) {
@@ -707,14 +768,11 @@ function Comment({ comment, currentUserId, onDeleteComment, onCommentAdded, allC
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
     const getAvatarSrc = (author) => {
-        if (!author) return `https://ui-avatars.com/api/?name=?&background=71717a&color=fff&size=128`; // Default for missing author
-        if (author.avatar && author.avatar.startsWith('http')) {
-            return author.avatar;
+        if (!author || !author.avatar) {
+            // Create a placeholder avatar URL
+            return `https://ui-avatars.com/api/?name=${encodeURIComponent(author?.username || '?')}&background=random&color=fff&size=128`;
         }
-        if (author.avatar) { // Assuming relative path like /images/avatar.jpg
-            return `http://localhost:5000${author.avatar}`;
-        }
-        return `https://ui-avatars.com/api/?name=${encodeURIComponent(author.username || 'User')}&background=random&color=fff&size=128`;
+        return getImageUrl(author.avatar); // 2. Use the helper
     };
 
     const avatarSrc = getAvatarSrc(comment.author);
@@ -828,7 +886,7 @@ import { useEffect, useState, useRef } from 'react';
 import api from '../utils/api';
 import { useSocket } from '../context/SocketContext';
 
-// Single Conversation Item Component
+// Enhanced Conversation Item Component
 function Conversation({ conversation, onSelect, isSelected, onAction, isHiddenList }) {
   const { onlineUsers } = useSocket();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -857,29 +915,63 @@ function Conversation({ conversation, onSelect, isSelected, onAction, isHiddenLi
   return (
     <div
       onClick={() => onSelect(conversation)}
-      className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200 group relative ${
-        isSelected ? 'bg-purple-900/40' : 'hover:bg-gray-700/50'
+      className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-300 group relative ${
+        isSelected 
+          ? 'bg-gradient-to-r from-purple-900/40 to-blue-900/30 border-l-2 border-purple-500' 
+          : 'hover:bg-gray-700/50'
       }`}
     >
-      {/* ... (Avatar and User Info remains the same) ... */}
+      {/* Enhanced Avatar with Glow Effect */}
       <div className="relative">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 p-0.5"><img src={`http://localhost:5000${otherUser.avatar}`} alt={otherUser.username} className="w-full h-full rounded-full object-cover bg-gray-900" /></div>
-        {isOnline && <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-gray-800 animate-pulse"></div>}
+        <div className={`w-12 h-12 rounded-full p-0.5 ${isOnline ? 'bg-gradient-to-br from-green-400 to-emerald-500' : 'bg-gradient-to-br from-purple-600 to-blue-500'}`}>
+          <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
+            <img 
+              src={`http://localhost:5000${otherUser.avatar}`} 
+              alt={otherUser.username} 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
+        </div>
+        {isOnline && (
+          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-gray-900">
+            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75"></div>
+          </div>
+        )}
       </div>
+      
+      {/* User Info */}
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-white truncate">{otherUser.username}</p>
-        <p className="text-xs text-gray-400 truncate">{conversation.lastMessage?.content || 'No messages yet'}</p>
+        <p className={`font-semibold truncate ${isSelected ? 'text-white' : 'text-gray-200 group-hover:text-white'}`}>
+          {otherUser.username}
+        </p>
+        <p className="text-xs truncate text-gray-400 group-hover:text-gray-200 transition-colors">
+          {conversation.lastMessage?.content || 'No messages yet'}
+        </p>
       </div>
 
-      {/* More Options Button */}
-      <button onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen); }} className="p-1 rounded-full text-gray-400 hover:bg-gray-600/50 hover:text-white transition-colors opacity-0 group-hover:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01" /></svg>
+      {/* Enhanced More Options Button */}
+      <button 
+        onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen); }} 
+        className="p-1 rounded-full text-gray-400 hover:text-white transition-colors group-hover:bg-gray-700/50"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01" />
+        </svg>
       </button>
 
-      {/* Options Menu Dropdown */}
+      {/* Enhanced Options Menu Dropdown */}
       {menuOpen && (
-        <div ref={menuRef} className="absolute top-10 right-2 w-40 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-10 py-1">
-          <button onClick={() => handleAction(isHiddenList ? 'unhide' : 'hide')} className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-purple-800/50">
+        <div 
+          ref={menuRef} 
+          className="absolute top-10 right-2 w-40 bg-gray-800/90 backdrop-blur-lg border border-gray-700 rounded-lg shadow-xl z-10 py-1 overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-800/90 to-gray-900/90 -z-10"></div>
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg blur-sm -z-20"></div>
+          
+          <button 
+            onClick={() => handleAction(isHiddenList ? 'unhide' : 'hide')} 
+            className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-purple-800/50 hover:text-white transition-all duration-300"
+          >
             {isHiddenList ? 'Unhide Chat' : 'Hide Chat'}
           </button>
         </div>
@@ -888,24 +980,64 @@ function Conversation({ conversation, onSelect, isSelected, onAction, isHiddenLi
   );
 }
 
-// Main List Component is now much simpler
+// Enhanced Main List Component
 function ConversationList({ conversations, loading, onSelectConversation, selectedConversation, onAction, isHiddenList, onToggleHidden }) {
   return (
-    <div className="w-1/3 border-r border-gray-700/50 flex flex-col">
-      <div className="p-4 border-b border-gray-700/50 flex justify-between items-center">
-        <h2 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+    <div className="w-1/3 border-r border-gray-700/50 flex flex-col bg-gradient-to-b from-gray-900/30 to-gray-900/10">
+      {/* Enhanced Header */}
+      <div className="p-4 border-b border-gray-700/50 flex justify-between items-center bg-gray-900/20 backdrop-blur-sm">
+        <h2 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow">
           {isHiddenList ? 'Hidden Chats' : 'Chats'}
         </h2>
-        <button onClick={onToggleHidden} title="Toggle Hidden Chats" className="p-2 rounded-full hover:bg-gray-700">
-            {isHiddenList ? <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-8a7 7 0 1114 0 7 7 0 01-14 0zm7-5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" /></svg> : <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clipRule="evenodd" /></svg>}
+        
+        {/* Enhanced Toggle Button */}
+        <button 
+          onClick={onToggleHidden} 
+          title={isHiddenList ? "Show Active Chats" : "Show Hidden Chats"}
+          className={`p-2 rounded-full transition-all duration-300 ${
+            isHiddenList 
+              ? 'bg-gradient-to-br from-amber-500/20 to-amber-600/20 text-amber-400 hover:from-amber-500/30 hover:to-amber-600/30' 
+              : 'bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 hover:from-purple-500/30 hover:to-blue-500/30'
+          }`}
+        >
+          {isHiddenList ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-8a7 7 0 1114 0 7 7 0 01-14 0zm7-5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+            </svg>
+          )}
         </button>
       </div>
-      <div className="flex-1 overflow-y-auto p-2 custom-scrollbar">
-        {loading && <div className="text-center p-4 text-gray-400">Loading...</div>}
-        {!loading && conversations.length === 0 && (
-          <div className="text-center p-4 text-gray-500">{isHiddenList ? 'No hidden chats.' : 'No conversations started.'}</div>
+      
+      {/* Conversation List */}
+      <div className="flex-1 overflow-y-auto p-3 custom-scrollbar">
+        {loading && (
+          <div className="flex flex-col items-center justify-center p-6">
+            <div className="w-16 h-16 border-t-4 border-purple-500 border-opacity-50 rounded-full animate-spin"></div>
+            <p className="mt-4 text-gray-400">Loading conversations...</p>
+          </div>
         )}
-        <div className="space-y-1">
+        
+        {!loading && conversations.length === 0 && (
+          <div className="flex flex-col items-center justify-center p-6 text-center">
+            <div className="w-20 h-20 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <p className="text-gray-500 mb-1">
+              {isHiddenList ? 'No hidden chats' : 'No conversations started'}
+            </p>
+            <p className="text-sm text-gray-600">
+              {isHiddenList ? 'All your chats are visible' : 'Start a conversation now!'}
+            </p>
+          </div>
+        )}
+        
+        <div className="space-y-2">
           {!loading && conversations.map((conv) => (
             <Conversation
               key={conv._id}
@@ -921,232 +1053,16 @@ function ConversationList({ conversations, loading, onSelectConversation, select
     </div>
   );
 }
+
 export default ConversationList;
 
 ////CreatePost.jsx
-import { useState } from 'react';
-import api from '../utils/api';
-import { useNavigate } from 'react-router-dom';
+import PostForm from './PostForm';
 
 function CreatePost() {
-  const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append('title', title);
-      formData.append('content', content);
-      if (image) {
-        formData.append('image', image);
-      }
-      await api.post('/posts', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      navigate('/dashboard');
-    } catch (err) {
-      console.error('Error creating post:', err);
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 
   return (
-    <div className="flex-grow bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-4 md:p-8 min-h-screen">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden -z-10">
-        {[...Array(12)].map((_, i) => (
-          <div 
-            key={i}
-            className="absolute rounded-full animate-float"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 10 + 5}px`,
-              height: `${Math.random() * 10 + 5}px`,
-              background: `rgba(${i % 3 === 0 ? '139, 92, 246' : i % 3 === 1 ? '59, 130, 246' : '6, 182, 212'}, ${Math.random() * 0.2 + 0.05})`,
-              animationDuration: `${Math.random() * 20 + 10}s`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          ></div>
-        ))}
-      </div>
-
-      <div className="max-w-3xl mx-auto mt-8 md:mt-16">
-        <div className="relative bg-gray-900/70 backdrop-blur-lg border border-gray-700/50 rounded-3xl shadow-2xl shadow-purple-900/20 overflow-hidden transition-all duration-500 hover:shadow-purple-900/30">
-          {/* Decorative Gradient Elements */}
-          <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-purple-900/15 via-purple-900/5 to-transparent"></div>
-          <div className="absolute bottom-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-900/15 via-blue-900/5 to-transparent"></div>
-          
-          <div className="relative z-10 p-8 md:p-10">
-            {/* Header Section */}
-            <div className="mb-10 text-center group">
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent inline-block">
-                Craft Your Story
-              </h2>
-              <p className="text-gray-400/90 mt-3 text-lg max-w-md mx-auto">
-                Share your unique perspective with the world
-              </p>
-              <div className="mt-4 h-1 w-20 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full mx-auto opacity-80 group-hover:w-32 transition-all duration-500"></div>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Title Field */}
-              <div className="group">
-                <label htmlFor="title" className="block text-sm font-medium text-gray-300/90 mb-3 ml-1">
-                  <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Post Title</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <input
-                    id="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                    className="relative w-full px-5 py-4 bg-gray-800/70 border border-gray-700/50 rounded-xl text-white placeholder-gray-500/70 focus:border-purple-500/70 focus:outline-none focus:ring-2 focus:ring-purple-900/20 transition-all duration-300"
-                    placeholder="Give your post a title..."
-                  />
-                </div>
-              </div>
-              
-              {/* Content Field */}
-              <div className="group">
-                <label htmlFor="content" className="block text-sm font-medium text-gray-300/90 mb-3 ml-1">
-                  <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Your Content</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <textarea
-                    id="content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    required
-                    rows={8}
-                    className="relative w-full px-5 py-4 bg-gray-800/70 border border-gray-700/50 rounded-xl text-white placeholder-gray-500/70 focus:border-purple-500/70 focus:outline-none focus:ring-2 focus:ring-purple-900/20 transition-all duration-300"
-                    placeholder="Pour your thoughts onto the page..."
-                  ></textarea>
-                </div>
-              </div>
-              
-              {/* Image Upload */}
-              <div className="group">
-                <label htmlFor="image" className="block text-sm font-medium text-gray-300/90 mb-3 ml-1">
-                  <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Featured Image (Optional)</span>
-                </label>
-                
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-700/50 rounded-xl p-10 text-center bg-gray-900/30 hover:border-purple-500/50 transition-all duration-500 cursor-pointer overflow-hidden">
-                    <div className="relative z-10">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 text-gray-500/80 mb-4 group-hover:text-purple-400 transition-colors duration-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-gray-400/90 group-hover:text-gray-300 transition-colors duration-300 text-lg">
-                        {image ? 'Perfect! Image selected' : 'Drag & drop or click to upload'}
-                      </p>
-                      <p className="text-sm text-gray-500/70 mt-2">Supports: JPG, PNG, GIF (Max 10MB)</p>
-                    </div>
-                    <input
-                      type="file"
-                      id="image"
-                      name="image"
-                      accept="image/*"
-                      onChange={handleImageChange}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    />
-                  </div>
-                </div>
-                
-                {imagePreview && (
-                  <div className="mt-6 border border-gray-700/50 rounded-xl overflow-hidden transition-all duration-500 group">
-                    <div className="relative">
-                      <img 
-                        src={imagePreview} 
-                        alt="Preview" 
-                        className="w-full h-80 object-cover group-hover:opacity-90 transition-opacity duration-300"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setImagePreview(null);
-                          setImage(null);
-                        }}
-                        className="absolute top-4 right-4 bg-gray-900/80 hover:bg-red-600/90 rounded-full p-2 transition-all duration-300 shadow-lg"
-                        title="Remove image"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                    <div className="p-4 bg-gray-800/50 text-center text-sm text-gray-400/80 border-t border-gray-700/50">
-                      Your stunning visual preview
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              {/* Action Buttons */}
-              <div className="flex gap-5 pt-6">
-                <button
-                  type="button"
-                  onClick={() => navigate('/dashboard')}
-                  className="flex-1 py-4 px-6 bg-gray-800/70 hover:bg-gray-700/90 border border-gray-700/50 rounded-xl text-gray-300 hover:text-red-400 font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-md hover:shadow-red-900/20 group"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 group-hover:text-red-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <span>Discard</span>
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-                
-                <button
-                  type="submit"
-                  className="flex-1 py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-900/40 flex items-center justify-center gap-3 group relative overflow-hidden"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    Publish Post
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-700/30 to-indigo-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      {/* Animation Styles */}
-      <style jsx global>{`
-        @keyframes float {
-          0% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
-          100% { transform: translateY(0) rotate(0deg); }
-        }
-        .animate-float {
-          animation: float linear infinite;
-        }
-      `}</style>
-    </div>
+    <PostForm />
   );
 }
 
@@ -1160,6 +1076,7 @@ import { useNavigate } from 'react-router-dom';
 import Profile from './Profile';
 import LikeButton from './LikeButton';
 import Comment from './Comment'; // Your updated Comment component
+import { getImageUrl } from '../utils/imageUrl';
 
 // Helper function to decode JWT
 function getCurrentUserId() {
@@ -1363,7 +1280,10 @@ function Dashboard() {
                   <div className="p-5 relative z-10">
                     {/* Post Header, Image, Content, LikeButton ... (Keep your existing structure) */}
                     <div className="flex items-start gap-4"> <div className="flex-shrink-0"> <div className="relative"> <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur opacity-20 group-hover:opacity-30 transition-opacity"></div> <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 p-0.5"> <div className="bg-gray-900 rounded-full p-1"> <div className="bg-gray-800 rounded-full w-full h-full flex items-center justify-center"> <span className="text-sm font-bold bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text text-transparent"> {post.author.username.charAt(0).toUpperCase()} </span> </div> </div> </div> </div> </div> <div className="flex-1 min-w-0"> <h3 className="text-lg font-bold group-hover:text-purple-300 transition-colors bg-gradient-to-r from-purple-100/90 to-cyan-100/90 bg-clip-text text-transparent"> {post.title} </h3> <p className="text-sm text-gray-400 mt-1"> By: <span className="text-purple-400">{post.author.username}</span> </p> <p className="text-xs text-gray-500 mt-1"> {new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })} </p> </div> </div>
-                    <div className="mt-5"> {post.imageUrl && (<div className="mb-4 rounded-xl overflow-hidden border border-gray-700/50 group-hover:border-purple-500/30 transition-colors"> <img src={`${post.imageUrl.startsWith('/') ? 'http://localhost:5000' : ''}${post.imageUrl}`} alt={post.title} className="w-full h-48 object-cover group-hover:scale-[1.02] transition-transform duration-300" /> </div>)} <p className="text-gray-300 line-clamp-3">{post.content}</p> </div>
+                    <div className="mt-5"> {post.imageUrl && (<div className="mb-4 rounded-xl overflow-hidden border border-gray-700/50 group-hover:border-purple-500/30 transition-colors"> <img src={getImageUrl(post.imageUrl)} alt={post.title} className="w-full h-48 object-cover group-hover:scale-[1.02] transition-transform duration-300" /> </div>)} <div
+                      className="text-gray-300 line-clamp-3 prose prose-invert max-w-none"
+                      dangerouslySetInnerHTML={{ __html: post.content }}
+                    /> </div>
                     <div className="mt-5 flex items-center justify-between">
                       <LikeButton postId={post._id} initialIsLiked={post.isLiked} initialLikeCount={post.likeCount} />
                       <button onClick={() => toggleCommentSection(post._id)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-purple-400 group"> <div className="relative"> <div className="absolute -inset-1.5 bg-purple-500/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div> <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /> </svg> </div> <span>{showComments[post._id] ? 'Hide' : 'Show'} Comments ({currentPostCommentsFlat.length})</span> </button>
@@ -2227,11 +2147,70 @@ import Message from './Message';
 import MessageInput from './MessageInput';
 import { useSocket } from '../context/SocketContext';
 
+// Helper function to get the current user's ID
+function getCurrentUserId() {
+  const token = localStorage.getItem('token');
+  if (!token) return null;
+  try {
+    return JSON.parse(atob(token.split('.')[1])).id;
+  } catch (e) {
+    return null;
+  }
+}
+
 function MessageContainer({ selectedConversation }) {
-  const [messages, setMessages] = useState([]);
+  // Get ALL necessary state from the central context
+  const { socket, messages, setMessages, typingState } = useSocket();
+
+  // Local state is ONLY for the loading spinner
   const [loading, setLoading] = useState(false);
-  const { socket } = useSocket();
-  const messagesEndRef = useRef(null); // Ref to auto-scroll to bottom
+  const messagesEndRef = useRef(null);
+
+  // Determine if the other user is typing in THIS conversation
+  const isTyping = selectedConversation ? typingState[selectedConversation._id] : false;
+
+  // Get the messages for THIS conversation from the global messages object
+  const currentMessages = selectedConversation ? messages[selectedConversation._id] || [] : [];
+
+  // This useEffect ONLY fetches historical messages when a new chat is selected
+  useEffect(() => {
+    const fetchMessages = async () => {
+      if (!selectedConversation) return;
+
+      // Only fetch from API if we don't already have the history in our global state
+      if (!messages[selectedConversation._id]) {
+        setLoading(true);
+        try {
+          const res = await api.get(`/chat/conversations/${selectedConversation._id}/messages`);
+          // Add the fetched history to our global state
+          setMessages(prevGlobalState => ({
+            ...prevGlobalState,
+            [selectedConversation._id]: res.data
+          }));
+        } catch (error) {
+          console.error("Failed to fetch messages", error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchMessages();
+  }, [selectedConversation, messages, setMessages]);
+
+
+  // This useEffect ONLY handles joining/leaving socket rooms
+  useEffect(() => {
+    if (socket && selectedConversation) {
+      socket.emit('joinRoom', selectedConversation._id);
+
+      // The return function is a 'cleanup' function.
+      // It runs when the user clicks a DIFFERENT conversation.
+      return () => {
+        socket.emit('leaveRoom', selectedConversation._id);
+      };
+    }
+  }, [socket, selectedConversation]);
 
   // Function to scroll to the latest message
   const scrollToBottom = () => {
@@ -2242,74 +2221,18 @@ function MessageContainer({ selectedConversation }) {
       });
     }
   };
-  
-  // Effect to fetch message history when a conversation is selected
+  // This useEffect ONLY handles auto-scrolling
   useEffect(() => {
-    const fetchMessages = async () => {
-      if (!selectedConversation) return;
-      setLoading(true);
-      try {
-        const res = await api.get(`/chat/conversations/${selectedConversation._id}/messages`);
-        setMessages(res.data);
-      } catch (error) {
-        console.error("Failed to fetch messages", error);
-        setMessages([]); // Clear messages on error
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMessages();
-  }, [selectedConversation]);
-
-  // Effect to listen for new messages from Socket.IO
-  useEffect(() => {
-    if (socket) {
-      const handleNewMessage = (newMessage) => {
-        // Only add the message if it belongs to the currently selected conversation
-        if (selectedConversation && newMessage.conversationId === selectedConversation._id) {
-          setMessages((prevMessages) => [...prevMessages, newMessage]);
-        }
-      };
-      const handleMessageDeleted = ({ messageId, conversationId }) => {
-        if (selectedConversation && conversationId === selectedConversation._id) {
-          setMessages((prevMessages) =>
-            prevMessages.map((msg) =>
-              msg._id === messageId
-                ? { ...msg, content: "This message was deleted.", isDeleted: true }
-                : msg
-            )
-          );
-        }
-      };
-      const handleMessageEdited = ({ messageId, conversationId, newContent }) => {
-        if (selectedConversation && conversationId === selectedConversation._id) {
-          setMessages((prevMessages) =>
-            prevMessages.map((msg) =>
-              msg._id === messageId
-                ? { ...msg, content: newContent, isEdited: true }
-                : msg
-            )
-          );
-        }
-      };
-
-      socket.on('newMessage', handleNewMessage);
-      socket.on('messageDeleted', handleMessageDeleted);
-      socket.on('messageEdited', handleMessageEdited);
-
-      return () => {
-        socket.off('newMessage', handleNewMessage);
-        socket.off('messageDeleted', handleMessageDeleted);
-        socket.off('messageEdited', handleMessageEdited);
-      };
-    }
-  }, [socket, selectedConversation]);
-
-  // Effect to scroll to bottom whenever messages array changes
-  useEffect(() => {
+    // A small delay gives the DOM time to render the new message before scrolling
     scrollToBottom();
-  }, [messages]);
+  }, [currentMessages, isTyping]); // Scroll when messages array changes or typing starts/stops
 
+
+  // ALL `socket.on()` listeners have been REMOVED from this component.
+  // They now live permanently and safely in SocketContext.jsx
+
+
+  // Display a placeholder if no chat is selected
   if (!selectedConversation) {
     return (
       <div className="w-2/3 flex items-center justify-center">
@@ -2319,29 +2242,45 @@ function MessageContainer({ selectedConversation }) {
       </div>
     );
   }
-  
-  const otherUser = selectedConversation.participants[0];
+
+  // Get the other user's info for the header
+  const selfId = getCurrentUserId();
+  const otherUser = selectedConversation.participants.find(p => p._id !== selfId);
 
   return (
     <div className="w-2/3 flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center gap-4 p-4 border-b border-gray-700/50 bg-gray-900/30">
-        <img src={`http://localhost:5000${otherUser.avatar}`} alt={otherUser.username} className="w-10 h-10 rounded-full object-cover" />
-        <h3 className="font-bold text-lg text-white">{otherUser.username}</h3>
-      </div>
-      
+      {otherUser && (
+        <div className="flex items-center gap-4 p-4 border-b border-gray-700/50 bg-gray-900/30">
+          <img src={`http://localhost:5000${otherUser.avatar}`} alt={otherUser.username} className="w-10 h-10 rounded-full object-cover" />
+          <h3 className="font-bold text-lg text-white">{otherUser.username}</h3>
+        </div>
+      )}
+
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-        {loading ? (
-          <div className="text-center text-gray-400">Loading messages...</div>
-        ) : (
-          messages.map((msg) => (
-            <Message key={msg._id} message={msg} />
-          ))
+      <div ref={messagesEndRef} className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+        {loading && <div className="text-center text-gray-400">Loading messages...</div>}
+
+        {!loading && currentMessages.map((msg) => (
+          <Message key={msg._id} message={msg} />
+        ))}
+
+        {isTyping && (
+          <div className="flex justify-start">
+            <div className="flex items-center gap-2">
+              <img src={`http://localhost:5000${otherUser.avatar}`} alt="avatar" className="w-8 h-8 rounded-full" />
+              <div className="px-4 py-2.5 rounded-2xl text-white bg-gray-700 rounded-bl-none shadow-md">
+                <div className="flex items-center justify-center gap-1">
+                  <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                  <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                  <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
-      
+
       {/* Input */}
       <MessageInput selectedConversation={selectedConversation} />
     </div>
@@ -2352,18 +2291,61 @@ export default MessageContainer;
 
 ////MessageInput.jsx
 // client/src/components/MessageInput.jsx
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSocket } from '../context/SocketContext';
+import EmojiPicker from 'emoji-picker-react';
 
 function MessageInput({ selectedConversation }) {
   const [content, setContent] = useState('');
   const { socket } = useSocket();
+  const typingTimeoutRef = useRef(null);
+  const [showPicker, setShowPicker] = useState(false);
+  const pickerRef = useRef(null);
+
+  // 3. Add logic to close picker when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+        setShowPicker(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [pickerRef]);
+
+  // 4. Function to handle emoji selection
+  const onEmojiClick = (emojiObject) => {
+    setContent(prevInput => prevInput + emojiObject.emoji);
+  };
+
+  const handleInputChange = (e) => {
+    setContent(e.target.value);
+
+    if (!socket || !selectedConversation) return;
+
+    // If this is the first keypress, emit 'startTyping'
+    if (!typingTimeoutRef.current) {
+      socket.emit('startTyping', { conversationId: selectedConversation._id });
+    }
+
+    // Clear the previous timeout
+    clearTimeout(typingTimeoutRef.current);
+
+    // Set a new timeout. If the user doesn't type for 2 seconds, we'll emit 'stopTyping'.
+    typingTimeoutRef.current = setTimeout(() => {
+      socket.emit('stopTyping', { conversationId: selectedConversation._id });
+      typingTimeoutRef.current = null; // Reset the ref
+    }, 2000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!content.trim() || !socket || !selectedConversation) return;
 
     const receiverId = selectedConversation.participants[0]._id;
+    clearTimeout(typingTimeoutRef.current);
+    socket.emit('stopTyping', { conversationId: selectedConversation._id });
+    typingTimeoutRef.current = null;
 
     // Emit the 'sendMessage' event to the server
     socket.emit('sendMessage', {
@@ -2375,21 +2357,53 @@ function MessageInput({ selectedConversation }) {
   };
 
   return (
-    <div className="p-4 bg-gray-900/50 border-t border-gray-700/50">
+    <div className="p-4 bg-gradient-to-t from-gray-900 to-gray-900/60 border-t border-gray-700/50 backdrop-blur-sm">
+      {showPicker && (
+        <div ref={pickerRef} className="absolute bottom-full mb-2">
+          <EmojiPicker 
+            onEmojiClick={onEmojiClick}
+            theme="dark"
+            emojiStyle="native"
+            height={400}
+            width={350}
+          />
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="flex items-center gap-3">
-        <input
-          type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Type a message..."
-          className="flex-1 px-4 py-2.5 bg-gray-800/60 border border-gray-700/60 rounded-xl text-white placeholder-gray-400 focus:border-purple-500/70 focus:outline-none focus:ring-1 focus:ring-purple-900/40 transition-all backdrop-blur-sm"
-        />
+        <button 
+          type="button"
+          onClick={() => setShowPicker(!showPicker)}
+          className="p-2 rounded-full hover:bg-purple-500/20 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </button>
+        <div className="flex-1 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl blur-sm opacity-0 transition-opacity duration-300 group-focus-within:opacity-100"></div>
+          <input
+            type="text"
+            value={content}
+            onChange={handleInputChange}
+            placeholder="Type a message..."
+            className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700/60 rounded-xl text-white placeholder-gray-400/70 focus:border-purple-500/60 focus:outline-none focus:ring-2 focus:ring-purple-900/30 transition-all backdrop-blur-lg relative z-10"
+          />
+        </div>
         <button
           type="submit"
-          className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-900/40 disabled:opacity-50"
+          className={`px-5 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg relative overflow-hidden group ${
+            !content.trim() ? 'bg-gray-700/60 text-gray-400' : 
+            'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:shadow-xl hover:shadow-purple-900/40'
+          }`}
           disabled={!content.trim()}
         >
-          Send
+          <span className="relative z-10 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            </svg>
+            Send
+          </span>
+          <div className={`absolute inset-0 bg-gradient-to-r from-purple-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+            !content.trim() ? 'hidden' : ''
+          }`}></div>
         </button>
       </form>
     </div>
@@ -2399,51 +2413,631 @@ function MessageInput({ selectedConversation }) {
 export default MessageInput;
 
 ////Navbar.jsx
-import { useNavigate } from 'react-router-dom';
+// client/src/components/Navbar.jsx
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import NotificationBell from './NotificationBell';
+import { getImageUrl } from '../utils/imageUrl';
 
-function Navbar({ isAuthenticated, logout }) { // Ensure logout is passed from App.jsx
+// --- Desktop NavLink Component (No Changes) ---
+const DesktopNavLink = ({ to, text, icon, color, onClick }) => (
+  <button onClick={onClick} className={`relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-${color}-500 transition-all duration-300 hover:shadow-${color}-900/30 shadow-md`}>
+    <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-${color}-500/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+    {icon}
+    <span className={`font-medium text-xs md:text-sm bg-gradient-to-r from-${color}-200 to-blue-200 bg-clip-text text-transparent`}>{text}</span>
+    <div className={`absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-${color}-500 to-blue-500 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full`}></div>
+  </button>
+);
+
+// --- Mobile NavLink Component (No Changes) ---
+const MobileNavLink = ({ icon, text, onClick }) => (
+  <button onClick={onClick} className="w-full flex items-center gap-4 p-4 text-lg text-gray-200 rounded-xl hover:bg-purple-500/10 transition-all duration-200 group relative overflow-hidden">
+    <div className="p-2 bg-gray-800/50 rounded-lg border border-gray-700 group-hover:bg-purple-600/50 group-hover:border-purple-500 transition-colors text-purple-300 group-hover:text-white">{icon}</div>
+    <span className="font-semibold tracking-wider">{text}</span>
+    <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine" />
+  </button>
+);
+
+
+function Navbar({ isAuthenticated, logout }) {
   const navigate = useNavigate();
-  // handleLogout function is now in App.jsx and passed as `logout` prop
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => { setIsMenuOpen(false); }, [location]);
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isMenuOpen]);
+
+  const navLinks = [
+    { to: '/dashboard', text: 'Home', color: 'purple', icon: <svg className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg> },
+    { to: '/users', text: 'Community', color: 'indigo', icon: <svg className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg> },
+    { to: '/chat', text: 'Chat', color: 'cyan', icon: <svg className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg> },
+  ];
+
+  const coloredIcon = (icon, color) => React.cloneElement(icon, { className: `${icon.props.className} text-${color}-400 group-hover:text-${color}-300 transition-colors` });
 
   return (
-    <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-2xl shadow-purple-900/30 sticky top-0 z-50 backdrop-blur-md border-b border-gray-700/50">
-      <div className="container mx-auto px-6 py-3">
-        <div className="flex justify-between items-center">
-          {/* ... (Logo remains the same) ... */}
-          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')} > <div className="relative"> <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg blur opacity-20 group-hover:opacity-30 transition duration-300"></div> <img src={"http://localhost:5000/images/Blog.svg"} className="relative w-12 h-12 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110" alt="App Icon" /> </div> <div className="relative"> <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent"> Blog <span className="font-extrabold">App</span> </h1> <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-purple-600 to-blue-500 rounded-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div> </div> </div>
-          <div className="flex items-center space-x-2 md:space-x-3">
+    <nav className="bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-purple-900/30 sticky top-0 z-50 border-b border-gray-700/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}>
+            <img src={getImageUrl("/images/Blog.svg")} className="h-12 w-12 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110" alt="App Icon" />
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">Blog <span className="font-extrabold">App</span></h1>
+          </div>
+
+          {/* --- THIS IS THE CORRECTED CONTAINER FOR ALL RIGHT-SIDE ITEMS --- */}
+          <div className="flex items-center gap-2">
+            {/* Desktop Navigation Links (hidden on mobile) */}
+            <div className="hidden md:flex items-center space-x-2">
+              <DesktopNavLink to="/about" text="About" color="teal" onClick={() => navigate('/about')} icon={coloredIcon(<svg className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>, 'teal')} />
+              {isAuthenticated && (
+                <>
+                  {navLinks.map(link => <DesktopNavLink key={link.to} {...link} onClick={() => navigate(link.to)} icon={coloredIcon(link.icon, link.color)} />)}
+                  <button onClick={logout} className="relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-red-500 transition-all duration-300 hover:shadow-red-900/30 shadow-md"> <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-red-400 group-hover:text-red-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /> </svg> <span className="font-medium text-xs md:text-sm bg-gradient-to-r from-red-200 to-orange-200 bg-clip-text text-transparent">Logout</span> <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full"></div> </button>
+                </>
+              )}
+            </div>
+
+            {/* Notification Bell (always part of the group, but visibility depends on auth) */}
+            {isAuthenticated && <NotificationBell />}
+
+            {/* Mobile Menu Button (hidden on desktop) */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="relative h-10 w-10 z-50 text-gray-300"
+                aria-label="Toggle Menu"
+              >
+                <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <span aria-hidden="true" className={`block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${isMenuOpen ? 'rotate-45' : '-translate-y-2'}`}></span>
+                  <span aria-hidden="true" className={`block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                  <span aria-hidden="true" className={`block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${isMenuOpen ? '-rotate-45' : 'translate-y-2'}`}></span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Panel */}
+      <div className={`md:hidden fixed inset-0 z-40 transition-opacity duration-300 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-md" onClick={() => setIsMenuOpen(false)}></div>
+        <div className={`absolute top-0 right-0 h-full w-4/5 max-w-sm p-1 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="relative h-full bg-[#111827e6] rounded-2xl border border-purple-500/20 p-6 flex flex-col">
+            <div className="absolute -inset-px rounded-2xl -z-10 bg-gradient-to-r from-purple-600 via-cyan-500 to-purple-600 animate-gradient-border"></div>
+            <div className="flex items-center gap-3 mb-10">
+              <img src={getImageUrl("/images/Blog.svg")} className="h-10 w-10" alt="App Icon" />
+              <h2 className="text-xl font-bold">Menu</h2>
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} text="About" onClick={() => navigate('/about')} />
+              {isAuthenticated && navLinks.map(link => (
+                <MobileNavLink key={link.to} {...link} icon={React.cloneElement(link.icon, { className: "w-6 h-6" })} onClick={() => navigate(link.to)} />
+              ))}
+            </div>
             {isAuthenticated && (
-              <>
-                {/* ... (Home, Community, Chat, Logout buttons) ... */}
-                <button onClick={() => navigate('/dashboard')} className="relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-purple-500 transition-all duration-300 hover:shadow-purple-900/30 shadow-md"> <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-purple-400 group-hover:text-purple-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /> </svg> <span className="font-medium text-xs md:text-sm bg-gradient-to-r from-purple-200 to-blue-200 bg-clip-text text-transparent">Home</span> <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full"></div> </button>
-              </>
-            )}
-            <button onClick={() => navigate('/about')} className="relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-teal-500 transition-all duration-300 hover:shadow-teal-900/30 shadow-md">
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md-w-5 text-teal-400 group-hover:text-teal-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span className="font-medium text-xs md:text-sm bg-gradient-to-r from-teal-200 to-cyan-200 bg-clip-text text-transparent">About</span>
-              <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full"></div>
-            </button>
-            {isAuthenticated && (
-              <>
-                <button onClick={() => navigate('/users')} className="relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-indigo-500 transition-all duration-300 hover:shadow-indigo-900/30 shadow-md"> <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-indigo-400 group-hover:text-indigo-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /> </svg> <span className="font-medium text-xs md:text-sm bg-gradient-to-r from-indigo-200 to-blue-200 bg-clip-text text-transparent">Community</span> <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-blue-400 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full"></div> </button>
-                <button onClick={() => navigate('/chat')} className="relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-cyan-500 transition-all duration-300 hover:shadow-cyan-900/30 shadow-md">
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-                  <span className="font-medium text-xs md:text-sm bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">Chat</span>
-                  <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full"></div>
-                </button>
-                <button onClick={logout} className="relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-red-500 transition-all duration-300 hover:shadow-red-900/30 shadow-md"> <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-red-400 group-hover:text-red-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /> </svg> <span className="font-medium text-xs md:text-sm bg-gradient-to-r from-red-200 to-orange-200 bg-clip-text text-transparent">Logout</span> <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full"></div> </button>
-              </>
+              <div className="mt-auto pt-6 border-t border-gray-700/50">
+                <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>} text="Logout" onClick={logout} />
+              </div>
             )}
           </div>
         </div>
       </div>
+
+      {/* Keyframes (no changes) */}
+      <style>{`
+                @keyframes shine {
+                    from { transform: translateX(-100%) skewX(-20deg); }
+                    to { transform: translateX(200%) skewX(-20deg); }
+                }
+                .animate-shine {
+                    animation: shine 1.5s infinite;
+                }
+                .animate-gradient-border {
+                    animation: gradient-border 4s ease infinite;
+                    background-size: 400% 400%;
+                }
+                @keyframes gradient-border {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+            `}</style>
     </nav>
   );
 }
 
 export default Navbar;
+
+////NotificationBell.jsx
+// client/src/components/NotificationBell.jsx
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSocket } from '../context/SocketContext';
+import api from '../utils/api';
+
+const NotificationItem = ({ notification }) => {
+    const navigate = useNavigate();
+
+    const handleNotificationClick = () => {
+        if (notification.type === 'follow' || notification.type === 'chat') {
+            navigate(`/users/${notification.sender._id}`);
+        } else if (notification.post?._id) {
+            navigate(`/dashboard`);
+        }
+    };
+
+    const notificationIcons = {
+        like: (
+            <div className="p-2 bg-gradient-to-br from-rose-500/20 to-rose-700/30 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                </svg>
+            </div>
+        ),
+        comment: (
+            <div className="p-2 bg-gradient-to-br from-sky-500/20 to-sky-700/30 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-sky-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clipRule="evenodd" />
+                </svg>
+            </div>
+        ),
+        reply: (
+            <div className="p-2 bg-gradient-to-br from-violet-500/20 to-violet-700/30 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-violet-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+            </div>
+        ),
+        follow: (
+            <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-emerald-700/30 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+            </div>
+        ),
+        chat: (
+            <div className="p-2 bg-gradient-to-br from-amber-500/20 to-amber-700/30 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clipRule="evenodd" />
+                </svg>
+            </div>
+        )
+    };
+
+    const notificationText = {
+        like: `liked your post`,
+        comment: `commented on your post`,
+        reply: `replied to your comment`,
+        follow: 'started following you',
+        chat: 'sent you a message',
+    };
+
+    return (
+        <div
+            onClick={handleNotificationClick}
+            className={`relative p-4 flex items-start gap-4 cursor-pointer hover:bg-gradient-to-r from-indigo-900/20 to-indigo-900/5 transition-all duration-200 border-b border-indigo-900/20 last:border-b-0 group ${!notification.read ? 'bg-gradient-to-r from-indigo-900/10 to-transparent' : 'bg-transparent'
+                }`}
+        >
+            {/* Unread indicator */}
+            {!notification.read && (
+                <div className="absolute top-4 left-3 w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_6px_2px_rgba(56,189,248,0.5)] animate-pulse"></div>
+            )}
+
+            <div className="flex-shrink-0 mt-1">
+                {notificationIcons[notification.type]}
+            </div>
+            
+            <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                    <div className="relative">
+                        <img
+                            src={`http://localhost:5000${notification.sender.avatar}`}
+                            alt={notification.sender.username}
+                            className="w-7 h-7 rounded-full object-cover border-2 border-indigo-500/30 shadow-sm"
+                        />
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900"></div>
+                    </div>
+                    <p className="text-white font-medium truncate">{notification.sender.username}</p>
+                </div>
+                
+                <p className="text-sm text-indigo-100">
+                    {notificationText[notification.type]}
+                </p>
+                
+                {notification.post?.title && (
+                    <p className="text-xs mt-1 text-ellipsis overflow-hidden whitespace-nowrap text-indigo-300/70 italic">
+                        "{notification.post.title}"
+                    </p>
+                )}
+                
+                <p className="text-xs text-indigo-400/60 mt-2 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {new Date(notification.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {' • '}
+                    {new Date(notification.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric' })}
+                </p>
+            </div>
+        </div>
+    );
+};
+
+const NotificationBell = () => {
+    const { notifications, unreadCount, setUnreadCount, fetchNotifications } = useSocket();
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [dropdownRef]);
+
+    const handleToggle = async () => {
+        if (!isOpen) {
+            await fetchNotifications();
+            if (unreadCount > 0) {
+                try {
+                    await api.post('/notifications/read');
+                    setUnreadCount(0);
+                } catch (error) {
+                    console.error("Failed to mark notifications as read", error);
+                }
+            }
+        }
+        setIsOpen(!isOpen);
+    };
+
+    return (
+        <div className="relative" ref={dropdownRef}>
+            <button 
+                onClick={handleToggle} 
+                className={`relative p-2 rounded-full transition-all duration-300 ${isOpen 
+                    ? 'bg-gradient-to-br from-indigo-700/60 to-indigo-900/60 text-white shadow-[0_0_15px_0px_rgba(99,102,241,0.5)]' 
+                    : 'text-gray-300 hover:bg-gradient-to-br from-indigo-700/40 to-indigo-900/40 hover:text-white hover:shadow-[0_0_10px_0px_rgba(99,102,241,0.3)]'}`}
+            >
+                <div className="relative">
+                    <div className="relative">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            className={`h-6 w-6 transition-transform duration-300 ${unreadCount > 0 ? 'animate-float' : ''}`}
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                        >
+                            <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" 
+                            />
+                        </svg>
+                        
+                        {unreadCount > 0 && (
+                            <span className={`absolute -top-1 -right-1 h-5 w-5 text-xs flex items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-indigo-600 text-white font-bold shadow-sm shadow-indigo-700/70 ${unreadCount > 9 ? 'w-6' : ''}`}>
+                                {unreadCount > 9 ? '9+' : unreadCount}
+                            </span>
+                        )}
+                    </div>
+                </div>
+            </button>
+
+            {isOpen && (
+                <div className="absolute top-full right-0 mt-3 w-[320px] md:w-[380px] bg-gradient-to-b from-gray-900/95 to-gray-900 backdrop-blur-xl border border-indigo-900/30 rounded-xl shadow-2xl shadow-indigo-900/30 overflow-hidden z-50 transform transition-all duration-300 origin-top-right scale-95 animate-fadeIn">
+                    <div className="p-4 bg-gradient-to-r from-indigo-900/50 to-indigo-900/30 border-b border-indigo-900/30">
+                        <div className="flex justify-between items-center">
+                            <h3 className="font-bold text-lg text-white flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-300" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                                </svg>
+                                Notifications
+                            </h3>
+                            <span className="text-xs bg-indigo-700/40 text-indigo-200 px-2 py-1 rounded-full flex items-center gap-1">
+                                <span className="text-indigo-100 font-bold">{notifications.length}</span> total
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div className="max-h-[420px] overflow-y-auto custom-scrollbar">
+                        {notifications.length > 0 ? (
+                            notifications.map((n) => <NotificationItem key={n._id} notification={n} />)
+                        ) : (
+                            <div className="flex flex-col items-center justify-center p-8 text-center">
+                                <div className="bg-gradient-to-br from-indigo-900/30 to-indigo-900/10 p-5 rounded-full mb-4 border border-indigo-900/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    </svg>
+                                </div>
+                                <p className="text-gray-300 font-medium">All caught up!</p>
+                                <p className="text-sm text-gray-500 mt-2">No new notifications</p>
+                            </div>
+                        )}
+                    </div>
+                    
+                    {notifications.length > 0 && (
+                        <div className="p-3 text-center bg-gradient-to-r from-gray-900/60 to-gray-900/40 border-t border-indigo-900/30">
+                            <span className="text-xs text-indigo-400/80 flex items-center justify-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Notifications automatically marked as read
+                            </span>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default NotificationBell;
+
+////PostForm.jsx
+// client/src/components/PostForm.jsx
+import { useState, useEffect } from 'react';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import TiptapMenuBar from './TiptapMenuBar';
+import api from '../utils/api';
+import { useNavigate } from 'react-router-dom';
+
+function PostForm({ postToEdit }) {
+    const navigate = useNavigate();
+    const [title, setTitle] = useState('');
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [error, setError] = useState('');
+
+    const editor = useEditor({
+        extensions: [StarterKit],
+        content: '',
+        editorProps: {
+            attributes: {
+                class: 'prose prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none min-h-[200px]',
+            },
+        },
+    });
+
+    // If we are editing a post, populate the form fields
+    useEffect(() => {
+        if (postToEdit) {
+            setTitle(postToEdit.title);
+            // Set the editor content when it's ready
+            if (editor && postToEdit.content) {
+                editor.commands.setContent(postToEdit.content);
+            }
+            if (postToEdit.imageUrl) {
+                setImagePreview(`${postToEdit.imageUrl.startsWith('/') ? 'http://localhost:5000' : ''}${postToEdit.imageUrl}`);
+            }
+        }
+    }, [postToEdit, editor]);
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const htmlContent = editor.getHTML();
+
+        if (!title.trim() || htmlContent === '<p></p>') {
+            setError('Title and content are required.');
+            return;
+        }
+        setError('');
+
+        try {
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('content', htmlContent);
+            if (image) {
+                formData.append('image', image);
+            }
+
+            if (postToEdit) {
+                // Update existing post
+                await api.put(`/posts/${postToEdit._id}`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
+            } else {
+                // Create new post
+                await api.post('/posts', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
+            }
+            navigate('/dashboard');
+        } catch (err) {
+            setError(err.response?.data?.error || 'Something went wrong');
+            console.error('Error submitting post:', err);
+        }
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+            const reader = new FileReader();
+            reader.onloadend = () => setImagePreview(reader.result);
+            reader.readAsDataURL(file);
+        }
+    };
+
+    return (
+        <div className="flex-grow bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-4 md:p-8 min-h-screen">
+            {/* Animated Background Elements */}
+            <div className="fixed inset-0 overflow-hidden -z-10">
+                {[...Array(12)].map((_, i) => (
+                    <div
+                        key={i}
+                        className="absolute rounded-full animate-float"
+                        style={{
+                            top: `${Math.random() * 100}%`,
+                            left: `${Math.random() * 100}%`,
+                            width: `${Math.random() * 10 + 5}px`,
+                            height: `${Math.random() * 10 + 5}px`,
+                            background: `rgba(${i % 3 === 0 ? '139, 92, 246' : i % 3 === 1 ? '59, 130, 246' : '6, 182, 212'}, ${Math.random() * 0.2 + 0.05})`,
+                            animationDuration: `${Math.random() * 20 + 10}s`,
+                            animationDelay: `${Math.random() * 5}s`,
+                        }}
+                    ></div>
+                ))}
+            </div>
+
+            <div className="max-w-3xl mx-auto mt-8 md:mt-16">
+                <div className="relative bg-gray-900/70 backdrop-blur-lg border border-gray-700/50 rounded-3xl shadow-2xl shadow-purple-900/20 overflow-hidden transition-all duration-500 hover:shadow-purple-900/30">
+                    {/* Decorative Gradient Elements */}
+                    <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-purple-900/15 via-purple-900/5 to-transparent"></div>
+                    <div className="absolute bottom-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-900/15 via-blue-900/5 to-transparent"></div>
+
+                    <div className="relative z-10 p-8 md:p-10">
+                        {/* Header Section */}
+                        <div className="mb-10 text-center group">
+                            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent inline-block">
+                                Craft Your Story
+                            </h2>
+                            <p className="text-gray-400/90 mt-3 text-lg max-w-md mx-auto">
+                                Share your unique perspective with the world
+                            </p>
+                            <div className="mt-4 h-1 w-20 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full mx-auto opacity-80 group-hover:w-32 transition-all duration-500"></div>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="space-y-8">
+                            {/* Title Field */}
+                            <div className="group">
+                                <label htmlFor="title" className="block text-sm font-medium text-gray-300/90 mb-3 ml-1">
+                                    <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Post Title</span>
+                                </label>
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <input
+                                        id="title"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                        required
+                                        className="relative w-full px-5 py-4 bg-gray-800/70 border border-gray-700/50 rounded-xl text-white placeholder-gray-500/70 focus:border-purple-500/70 focus:outline-none focus:ring-2 focus:ring-purple-900/20 transition-all duration-300"
+                                        placeholder="Give your post a title..."
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Rich Text Editor */}
+                            <div className="bg-gray-800/70 border border-gray-700/50 rounded-xl">
+                                <TiptapMenuBar editor={editor} />
+                                <EditorContent editor={editor} />
+                            </div>
+
+                            <div className="group">
+                                <label htmlFor="image" className="block text-sm font-medium text-gray-300/90 mb-3 ml-1">
+                                    <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Featured Image (Optional)</span>
+                                </label>
+
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-700/50 rounded-xl p-10 text-center bg-gray-900/30 hover:border-purple-500/50 transition-all duration-500 cursor-pointer overflow-hidden">
+                                        <div className="relative z-10">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 text-gray-500/80 mb-4 group-hover:text-purple-400 transition-colors duration-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <p className="text-gray-400/90 group-hover:text-gray-300 transition-colors duration-300 text-lg">
+                                                {image ? 'Perfect! Image selected' : 'Drag & drop or click to upload'}
+                                            </p>
+                                            <p className="text-sm text-gray-500/70 mt-2">Supports: JPG, PNG, GIF (Max 10MB)</p>
+                                        </div>
+                                        <input
+                                            type="file"
+                                            id="image"
+                                            name="image"
+                                            accept="image/*"
+                                            onChange={handleImageChange}
+                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                        />
+                                    </div>
+                                </div>
+
+                                {imagePreview && (
+                                    <div className="mt-6 border border-gray-700/50 rounded-xl overflow-hidden transition-all duration-500 group">
+                                        <div className="relative">
+                                            <img
+                                                src={imagePreview}
+                                                alt="Preview"
+                                                className="w-full h-80 object-cover group-hover:opacity-90 transition-opacity duration-300"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setImagePreview(null);
+                                                    setImage(null);
+                                                }}
+                                                className="absolute top-4 right-4 bg-gray-900/80 hover:bg-red-600/90 rounded-full p-2 transition-all duration-300 shadow-lg"
+                                                title="Remove image"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div className="p-4 bg-gray-800/50 text-center text-sm text-gray-400/80 border-t border-gray-700/50">
+                                            Your stunning visual preview
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex gap-5 pt-6">
+                                <button
+                                    type="button"
+                                    onClick={() => navigate('/dashboard')}
+                                    className="flex-1 py-4 px-6 bg-gray-800/70 hover:bg-gray-700/90 border border-gray-700/50 rounded-xl text-gray-300 hover:text-red-400 font-medium flex items-center justify-center gap-3 transition-all duration-300 shadow-md hover:shadow-red-900/20 group"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 group-hover:text-red-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    <span>Discard</span>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+
+                                <button
+                                    type="submit"
+                                    className="flex-1 py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-900/40 flex items-center justify-center gap-3 group relative overflow-hidden"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                        Publish Post
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-700/30 to-indigo-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {/* Animation Styles */}
+            <style jsx global>{`
+        @keyframes float {
+          0% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+          100% { transform: translateY(0) rotate(0deg); }
+        }
+        .animate-float {
+          animation: float linear infinite;
+        }
+      `}</style>
+        </div>
+    );
+}
+
+export default PostForm;
 
 ////Profile.jsx
 // client/src/components/Profile.jsx
@@ -2451,6 +3045,7 @@ import { useState, useEffect, useCallback } from 'react';
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import FollowListModal from './FollowListModal';
+import { getImageUrl } from '../utils/imageUrl';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -2517,11 +3112,8 @@ export default function Profile() {
   };
 
   const getAvatarSrc = (currentUser) => {
-    if (!currentUser) return "http://localhost:5000/images/default_profile.jpg";
-    const defaultAvatar = "http://localhost:5000/images/default_profile.jpg";
-    if (currentUser.avatar && currentUser.avatar.startsWith('http')) return currentUser.avatar;
-    if (currentUser.avatar && currentUser.avatar.startsWith('/images/')) return `http://localhost:5000${currentUser.avatar}`;
-    return defaultAvatar;
+    if (!currentUser || !currentUser.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(currentUser.avatar); // 2. Use the helper
   };
 
   if (loading) {
@@ -2634,10 +3226,79 @@ export default function Profile() {
   );
 }
 
+////TiptapMenuBar.jsx
+// client/src/components/TiptapMenuBar.jsx
+import React from 'react';
+
+const TiptapMenuBar = ({ editor }) => {
+    if (!editor) {
+        return null;
+    }
+
+    const menuItems = [
+        { type: 'bold', icon: '𝐁' },
+        { type: 'italic', icon: '𝑰' },
+        { type: 'strike', icon: 'S' },
+        { type: 'code', icon: 'ᐸ/>' },
+        { type: 'heading', level: 1, icon: 'H₁' },
+        { type: 'heading', level: 2, icon: 'H₂' },
+        { type: 'bulletList', icon: '•' },
+        { type: 'orderedList', icon: '1.' },
+        { type: 'codeBlock', icon: '🗎' },
+        { type: 'blockquote', icon: '“' },
+        { type: 'horizontalRule', icon: '―' },
+        { type: 'undo', icon: '↶' },
+        { type: 'redo', icon: '↷' },
+    ];
+
+    const getAction = (item) => {
+        switch (item.type) {
+            case 'heading':
+                return () => editor.chain().focus().toggleHeading({ level: item.level }).run();
+            case 'bulletList':
+                return () => editor.chain().focus().toggleBulletList().run();
+            case 'orderedList':
+                return () => editor.chain().focus().toggleOrderedList().run();
+            case 'codeBlock':
+                return () => editor.chain().focus().toggleCodeBlock().run();
+            case 'blockquote':
+                return () => editor.chain().focus().toggleBlockquote().run();
+            case 'horizontalRule':
+                return () => editor.chain().focus().setHorizontalRule().run();
+            case 'undo':
+                return () => editor.chain().focus().undo().run();
+            case 'redo':
+                return () => editor.chain().focus().redo().run();
+            default:
+                return () => editor.chain().focus().toggleMark(item.type).run();
+        }
+    };
+
+    return (
+        <div className="flex flex-wrap items-center gap-2 p-2 bg-gray-900/50 border border-gray-700/50 rounded-t-xl">
+            {menuItems.map((item, index) => (
+                <button
+                    key={index}
+                    onClick={getAction(item)}
+                    disabled={item.type === 'undo' ? !editor.can().undo() : item.type === 'redo' ? !editor.can().redo() : false}
+                    className={`px-3 py-1.5 rounded-md text-sm font-semibold transition-colors duration-200
+            ${editor.isActive(item.type, item.level ? { level: item.level } : {}) ? 'bg-purple-600 text-white' : 'bg-gray-700/60 text-gray-300 hover:bg-gray-600/80'}
+            disabled:opacity-40 disabled:cursor-not-allowed`}
+                >
+                    {item.icon}
+                </button>
+            ))}
+        </div>
+    );
+};
+
+export default TiptapMenuBar;
+
 ////UserList.jsx
 import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUrl';
 
 function UserList() {
     const [users, setUsers] = useState([]);
@@ -2687,7 +3348,7 @@ function UserList() {
                                 {users.slice(0, 4).map((user, index) => (
                                     <img 
                                         key={index}
-                                        src={"http://localhost:5000/images/default_profile.jpg"} 
+                                        src={getImageUrl("/images/default_profile.jpg")} 
                                         className="w-8 h-8 rounded-full border-2 border-gray-800 shadow-md"
                                         alt={user.username}
                                     />
@@ -2752,7 +3413,7 @@ function UserList() {
                                             <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur opacity-20 group-hover:opacity-30 transition-opacity"></div>
                                             <div className="relative">
                                                 <img 
-                                                    src={"http://localhost:5000/images/default_profile.jpg"} 
+                                                    src={getImageUrl("/images/default_profile.jpg")} 
                                                     className="w-16 h-16 rounded-full border-2 border-purple-500/80 shadow-lg group-hover:border-cyan-400/80 transition-colors"
                                                     alt={user.username}
                                                 />
@@ -2810,16 +3471,14 @@ export default UserList;
 // client/src/components/UserListItem.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUrl';
 
 const UserListItem = ({ user, onModalClose }) => {
   const navigate = useNavigate();
 
-  const getAvatarSrc = (listUser) => {
-    if (!listUser) return `https://ui-avatars.com/api/?name=?&background=71717a&color=fff&size=128`;
-    const defaultAvatar = "http://localhost:5000/images/default_profile.jpg";
-    if (listUser.avatar && listUser.avatar.startsWith('http')) return listUser.avatar;
-    if (listUser.avatar && listUser.avatar.startsWith('/images/')) return `http://localhost:5000${listUser.avatar}`;
-    return defaultAvatar;
+  const getAvatarSrc = (user) => {
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
   };
 
   const handleNavigate = () => {
@@ -2828,20 +3487,20 @@ const UserListItem = ({ user, onModalClose }) => {
   };
 
   return (
-    <div 
+    <div
       onClick={handleNavigate}
       className="flex items-center p-3 hover:bg-gray-700/50 rounded-lg cursor-pointer transition-colors duration-200 group"
     >
-      <img 
-        src={getAvatarSrc(user)} 
-        alt={user.username} 
+      <img
+        src={getAvatarSrc(user)}
+        alt={user.username}
         className="w-10 h-10 rounded-full object-cover mr-4 border-2 border-gray-600 group-hover:border-purple-500 transition-colors"
       />
       <div className="flex-1">
         <p className="font-semibold text-white group-hover:text-purple-300 transition-colors text-sm">{user.username}</p>
         {user.bio && <p className="text-xs text-gray-400 line-clamp-1">{user.bio}</p>}
       </div>
-       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-500 group-hover:text-purple-400 transition-colors ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-500 group-hover:text-purple-400 transition-colors ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
     </div>
@@ -2856,6 +3515,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import api from '../utils/api';
 import { useNavigate, useParams } from 'react-router-dom';
 import FollowListModal from './FollowListModal';
+import { getImageUrl } from '../utils/imageUrl';
 
 // Helper function to get current logged-in user ID
 function getCurrentAuthUserId() {
@@ -2963,11 +3623,8 @@ function UserProfile() {
   };
 
   const getAvatarSrc = (user) => {
-    if (!user) return `https://ui-avatars.com/api/?name=?&background=71717a&color=fff&size=128`;
-    const defaultAvatar = "http://localhost:5000/images/default_profile.jpg";
-    if (user.avatar && user.avatar.startsWith('http')) return user.avatar;
-    if (user.avatar && user.avatar.startsWith('/images/')) return `http://localhost:5000${user.avatar}`;
-    return defaultAvatar;
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
   };
 
   if (loading) {
@@ -3105,12 +3762,13 @@ export default UserProfile;
 ///context
 ////SocketContext.jsx
 // client/src/context/SocketContext.jsx
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext, useCallback } from 'react';
 import io from 'socket.io-client';
+import api from '../utils/api'; // Make sure api utility is imported
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const SocketContext = createContext();
 
-// Create a custom hook to use the socket context easily in other components
 export const useSocket = () => {
   return useContext(SocketContext);
 };
@@ -3119,14 +3777,47 @@ export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
+  // --- GLOBAL STATE FOR CHAT ---
+  // We will manage all chat data here, at the highest level.
+  const [conversations, setConversations] = useState([]);
+  const [messages, setMessages] = useState({}); // Stores messages keyed by conversationId
+  const [typingState, setTypingState] = useState({}); // Stores typing status keyed by conversationId
+  // --- ADD NOTIFICATION STATE ---
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  // --- FUNCTION TO FETCH NOTIFICATIONS ---
+  const fetchNotifications = useCallback(async () => {
+    try {
+      const res = await api.get('/notifications');
+      setNotifications(res.data);
+      // Calculate unread count from the fetched data
+      const unread = res.data.filter(n => !n.read).length;
+      setUnreadCount(unread);
+    } catch (error) {
+      console.error("Failed to fetch notifications", error);
+    }
+  }, []);
+
+  // Function to fetch the initial list of conversations
+  const fetchConversations = useCallback(async () => {
+    try {
+        const res = await api.get('/chat/conversations');
+        setConversations(res.data);
+    } catch (error) {
+        console.error("Failed to fetch conversations", error);
+    }
+  }, []);
+
   useEffect(() => {
-    // Check for the auth token in localStorage
     const token = localStorage.getItem('token');
     
-    // Only attempt to connect if the user is authenticated
     if (token) {
-      // Establish the connection, passing the token for authentication
-      const newSocket = io("http://localhost:5000", {
+      // Fetch initial data when user is logged in
+      fetchNotifications();
+      fetchConversations();
+      
+      const newSocket = io(API_URL, {
         auth: {
           token: token,
         },
@@ -3134,27 +3825,97 @@ export const SocketContextProvider = ({ children }) => {
 
       setSocket(newSocket);
 
-      // Listen for the 'getOnlineUsers' event from the server
+      // --- SETUP ALL REAL-TIME EVENT LISTENERS ---
+
+      // --- LISTENER FOR REAL-TIME NOTIFICATIONS ---
+      newSocket.on('newNotification', ({ unreadCount: newCount }) => {
+        // The server gives us the new total count
+        setUnreadCount(newCount);
+        // We then refetch the list to get the new item
+        fetchNotifications();
+      });
+      
+      // Handles online user status
       newSocket.on('getOnlineUsers', (users) => {
         setOnlineUsers(users);
       });
 
-      // Cleanup on component unmount
+      // Handles receiving a new message
+      newSocket.on('newMessage', (newMessage) => {
+        setMessages((prev) => {
+          const convoId = newMessage.conversationId;
+          const currentMessages = prev[convoId] || [];
+          return { ...prev, [convoId]: [...currentMessages, newMessage] };
+        });
+      });
+
+      // Handles real-time updates to the conversation list (e.g., new last message)
+      newSocket.on('conversationUpdated', (updatedConversation) => {
+        setConversations(prevConvos => {
+            const exists = prevConvos.some(c => c._id === updatedConversation._id);
+            let newConvos;
+            if (exists) {
+                newConvos = prevConvos.map(c => c._id === updatedConversation._id ? updatedConversation : c);
+            } else {
+                newConvos = [updatedConversation, ...prevConvos];
+            }
+            return newConvos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+        });
+      });
+
+      // Handles real-time message edits
+      newSocket.on('messageEdited', ({ messageId, conversationId, newContent }) => {
+        setMessages(prev => ({
+          ...prev,
+          [conversationId]: (prev[conversationId] || []).map(m =>
+            m._id === messageId ? { ...m, content: newContent, isEdited: true } : m
+          ),
+        }));
+      });
+
+      // Handles real-time message deletions
+      newSocket.on('messageDeleted', ({ messageId, conversationId }) => {
+        setMessages(prev => ({
+          ...prev,
+          [conversationId]: (prev[conversationId] || []).map(m =>
+            m._id === messageId ? { ...m, content: 'This message was deleted.', isDeleted: true } : m
+          ),
+        }));
+      });
+
+      // Handles the typing indicator
+      newSocket.on('typingStarted', ({ conversationId }) => {
+        setTypingState(prev => ({ ...prev, [conversationId]: true }));
+      });
+      newSocket.on('typingStopped', ({ conversationId }) => {
+        setTypingState(prev => ({ ...prev, [conversationId]: false }));
+      });
+
+      // Cleanup function to close the socket when the component unmounts
       return () => {
         newSocket.close();
         setSocket(null);
       };
-    } else {
-      // If the user logs out or there's no token, close any existing socket
-      if (socket) {
-        socket.close();
-        setSocket(null);
-      }
     }
-  }, []); // The empty dependency array ensures this runs only once on mount
+  }, [fetchConversations, fetchNotifications]);
+
+  // The value provided to all children components
+  const value = {
+    socket,
+    onlineUsers,
+    conversations,
+    setConversations, // Needed for hide/unhide logic in ChatPage
+    messages,
+    setMessages,     // Needed for fetching historical messages
+    typingState,
+    notifications,
+    unreadCount,
+    setUnreadCount, // To allow the bell to reset the count
+    fetchNotifications, // To allow the bell to refresh the list
+  };
 
   return (
-    <SocketContext.Provider value={{ socket, onlineUsers }}>
+    <SocketContext.Provider value={value}>
       {children}
     </SocketContext.Provider>
   );
@@ -3165,12 +3926,13 @@ export const SocketContextProvider = ({ children }) => {
 // client/src/utils/api.js
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 // Get the token from localStorage
 const token = localStorage.getItem('token');
 
 // Create an Axios instance
 const apiClient = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: `${API_URL}/api`,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -3199,6 +3961,29 @@ apiClient.interceptors.request.use(
 );
 
 export default apiClient;
+
+////imageUrl.js
+// client/src/utils/imageUrl.js
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+/**
+ * Constructs the full URL for an image hosted on the backend.
+ * @param {string} imagePath - The path of the image from the database (e.g., /images/my-avatar.jpg).
+ * @returns {string} The full, absolute URL to the image.
+ */
+export const getImageUrl = (imagePath) => {
+  if (!imagePath) {
+    // Return a default image or an empty string if no path is provided
+    return `${API_URL}/images/default_profile.jpg`; 
+  }
+  // If the path already starts with http, it's likely an external URL (e.g., from a Google account)
+  if (imagePath.startsWith('http')) {
+    return imagePath;
+  }
+  // Otherwise, construct the full URL
+  return `${API_URL}${imagePath}`;
+};
 
 ///App.css
 @import "tailwindcss";
@@ -3250,6 +4035,7 @@ function AppContent() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
+    window.location.reload();
   };
 
   const mainContent = (
@@ -3294,6 +4080,10 @@ export default function App() {
 }
 
 ///index.css
+html {
+  font-size: 16px;
+}
+
 @import "tailwindcss";
 
 /* Add to index.css */
@@ -3525,6 +4315,7 @@ exports.getHiddenConversations = async (req, res) => {
 ///commentController.js
 const Comment = require('../models/Comment');
 const Post = require('../models/Post');
+const createNotification = require('../utils/createNotification');
 
 // Create a new comment
 exports.createComment = async (req, res) => {
@@ -3552,6 +4343,19 @@ exports.createComment = async (req, res) => {
                 return res.status(400).json({ error: 'Parent comment does not belong to this post' });
             }
             commentData.parentId = parentId;
+            await createNotification(req.io, req.userSocketMap, {
+                recipient: parentComment.author,
+                sender: senderId,
+                type: 'reply',
+                post: postId,
+            });
+        } else {
+            await createNotification(req.io, req.userSocketMap, {
+                recipient: post.author,
+                sender: senderId,
+                type: 'comment',
+                post: postId,
+            });
         }
 
         const comment = new Comment(commentData);
@@ -3617,6 +4421,7 @@ exports.deleteComment = async (req, res) => {
 // server/controllers/followController.js
 const User = require('../models/User');
 const mongoose = require('mongoose');
+const createNotification = require('../utils/createNotification');
 
 // Follow a user
 exports.followUser = async (req, res) => {
@@ -3647,6 +4452,12 @@ exports.followUser = async (req, res) => {
         // Add to target user's followers list
         userToFollow.followers.push(currentUserId);
         await userToFollow.save();
+
+        await createNotification(req.io, req.userSocketMap, {
+            recipient: userIdToFollow,
+            sender: currentUserId,
+            type: 'follow',
+        });
 
         res.status(200).json({ message: "Successfully followed user." });
 
@@ -3728,12 +4539,59 @@ exports.getFollowers = async (req, res) => {
     }
 };
 
+///notificationController.js
+// server/controllers/notificationController.js
+const Notification = require('../models/Notification');
+
+// Get all notifications for the logged-in user
+exports.getNotifications = async (req, res) => {
+    try {
+        const notifications = await Notification.find({ recipient: req.userId })
+            .populate('sender', 'username avatar')
+            .populate('post', 'title') // Populate the title of the related post
+            .sort({ createdAt: -1 })
+            .limit(30); // Limit to the most recent 30 notifications
+
+        res.json(notifications);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch notifications.' });
+    }
+};
+
+// Mark all notifications as read
+exports.markAllAsRead = async (req, res) => {
+    try {
+        await Notification.updateMany(
+            { recipient: req.userId, read: false },
+            { $set: { read: true } }
+        );
+        res.status(200).json({ message: 'All notifications marked as read.' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to mark notifications as read.' });
+    }
+};
+
+// Clear a specific chat notification
+exports.clearChatNotification = async (req, res) => {
+    try {
+        await Notification.deleteOne({
+            recipient: req.userId,
+            sender: req.params.senderId,
+            type: 'chat',
+        });
+        res.status(200).json({ message: 'Chat notification cleared.' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to clear chat notification.' });
+    }
+};
+
 ///postController.js
 // server/controllers/postController.js
 const Post = require('../models/Post');
 const express = require('express');
 const path = require('path');
 const FileSystem = require('fs');
+const createNotification = require('../utils/createNotification');
 
 exports.createPost = async (req, res) => {
   const { title, content } = req.body;
@@ -3840,6 +4698,12 @@ exports.toggleLike = async (req, res) => {
     } else {
       // Like the post
       post.likes.push(userId);
+      await createNotification(req.io, req.userSocketMap, {
+        recipient: post.author,
+        sender: userId,
+        type: 'like',
+        post: post._id,
+      });
     }
     await post.save();
     
@@ -4128,6 +4992,51 @@ const MessageSchema = new mongoose.Schema({
 
 module.exports = mongoose.model('Message', MessageSchema);
 
+///Notification.js
+// server/models/Notification.js
+const mongoose = require('mongoose');
+
+const NotificationSchema = new mongoose.Schema({
+    // The user who receives the notification. We'll index this for fast lookups.
+    recipient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
+    },
+
+    // The user who triggered the notification (e.g., who liked the post).
+    sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+
+    // The type of notification. The `enum` provides validation.
+    type: {
+        type: String,
+        enum: ['like', 'comment', 'reply', 'follow', 'chat'],
+        required: true,
+    },
+
+    // An optional reference to the Post this notification is about.
+    // This is relevant for likes, comments, and replies.
+    post: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    },
+
+    // A flag to see if the user has viewed the notification yet.
+    read: {
+        type: Boolean,
+        default: false,
+    },
+}, {
+    timestamps: true, // Automatically adds createdAt and updatedAt
+});
+
+module.exports = mongoose.model('Notification', NotificationSchema);
+
 ///Post.js
 // server/models/Post.js
 const mongoose = require('mongoose');
@@ -4230,7 +5139,7 @@ router.get('/conversations/hidden', chatController.getHiddenConversations);
 router.post('/conversations/:conversationId/hide', chatController.hideConversation);
 router.post('/conversations/:conversationId/unhide', chatController.unhideConversation);
 
-// --- We will add routes for edit, delete, and hide here later ---
+module.exports = router;
 
 module.exports = router;
 
@@ -4266,6 +5175,22 @@ router.get('/:userId/followers', followController.getFollowers);
 
 module.exports = router;
 
+///notificationRoutes.js
+// server/routes/notificationRoutes.js
+const express = require('express');
+const router = express.Router();
+const notificationController = require('../controllers/notificationController');
+const authMiddleware = require('../middleware/authMiddleware');
+
+// All notification routes are protected
+router.use(authMiddleware);
+
+router.get('/', notificationController.getNotifications);
+router.post('/read', notificationController.markAllAsRead);
+router.delete('/chat/:senderId', notificationController.clearChatNotification);
+
+module.exports = router;
+
 ///postRoutes.js
 // server/routes/postRoutes.js
 const express = require('express');
@@ -4290,7 +5215,6 @@ router.post('/:id/like', postController.toggleLike);
 router.delete('/:id', postController.deletePost);
 
 module.exports = router;
-}
 
 ///userRoutes.js
 // server/routes/userRoutes.js
@@ -4317,217 +5241,247 @@ module.exports = router;
 ///socket.js
 // server/socket/socket.js
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
+const createNotification = require('../utils/createNotification');
 
-const EDIT_DELETE_WINDOW_MS = 15 * 60 * 1000; 
+const EDIT_DELETE_WINDOW_MS = 15 * 60 * 1000;
 // This object will map a userId to their currently active socketId
 // e.g., { "60d...user_id...f7": "aBcDeFgHiJkL123" }
 const userSocketMap = {};
+
+// This is a helper function to avoid repeating the broadcast logic
+const broadcastToConversation = async (io, conversationId, event, payload) => {
+  const conversation = await Conversation.findById(conversationId);
+  if (conversation) {
+    conversation.participants.forEach(participantId => {
+      const socketId = userSocketMap[participantId.toString()];
+      if (socketId) {
+        io.to(socketId).emit(event, payload);
+      }
+    });
+  }
+};
 
 function socketHandler(io) {
   // This is a Socket.IO middleware. It runs for every incoming connection.
   // Here, we verify the JWT sent by the client.
   io.use((socket, next) => {
-    const token = socket.handshake.auth.token;
-    if (!token) {
-      return next(new Error("Authentication error: Token not provided."));
-    }
-
     try {
+      const token = socket.handshake.auth.token;
+      if (!token) throw new Error("Authentication error.");
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      // Attach the userId to the socket object for future use
-      socket.userId = decoded.id; 
+      socket.userId = decoded.id;
       next();
     } catch (err) {
-      return next(new Error("Authentication error: Invalid token."));
+      next(new Error("Authentication error."));
     }
   });
 
   io.on('connection', (socket) => {
     const userId = socket.userId;
-    console.log(`User connected: ${userId} with socket ID: ${socket.id}`);
-
-    // Add the connected user to our map
+    console.log(`User connected: ${userId} on socket ${socket.id}`);
     userSocketMap[userId] = socket.id;
-
-    // Emit an event to all connected clients to update online user lists
     io.emit('getOnlineUsers', Object.keys(userSocketMap));
 
-    // Listen for 'sendMessage' events from a client
     socket.on('sendMessage', async ({ receiverId, content }) => {
       try {
         const senderId = socket.userId;
 
-        // Find an existing conversation between the two users
-        let conversation = await Conversation.findOne({
-          participants: { $all: [senderId, receiverId] },
-        });
+        let conversation = await Conversation.findOneAndUpdate(
+          { participants: { $all: [senderId, receiverId] } },
+          { $setOnInsert: { participants: [senderId, receiverId] } },
+          { upsert: true, new: true }
+        );
 
-        // If no conversation exists, create a new one
-        if (!conversation) {
-          conversation = new Conversation({
-            participants: [senderId, receiverId],
-          });
-        }
-
-        // Create the new message
         const newMessage = new Message({
           conversationId: conversation._id,
           sender: senderId,
           content,
-          readBy: [senderId] // The sender has implicitly read the message
         });
 
-        // Save the message and update the conversation's lastMessage
-        // Using Promise.all to run these in parallel for efficiency
-        const [savedMessage] = await Promise.all([
-          newMessage.save(),
-          Conversation.updateOne(
-              { _id: conversation._id },
-              { $set: { lastMessage: newMessage._id } }
-          )
-        ]);
+        await newMessage.save();
 
-        // Populate the sender details so the client can display it
-        const messageToSend = await Message.findById(savedMessage._id).populate('sender', 'username avatar');
+        // Update the last message and timestamp on the conversation
+        conversation.lastMessage = newMessage._id;
+        await conversation.save();
 
-        // Check if the receiver is online
-        const receiverSocketId = userSocketMap[receiverId];
-        if (receiverSocketId) {
-          // If they are online, send the message directly to their socket
-          io.to(receiverSocketId).emit('newMessage', messageToSend);
-        }
-
-        // Also send the message back to the sender to confirm it was sent
-        socket.emit('newMessage', messageToSend);
-
-      } catch (error) {
-        console.error("Error in sendMessage event: ", error);
-        // Optionally, emit an error event back to the sender
-        socket.emit('sendMessageError', { message: "Failed to send message." });
-      }
-    });
-
-    socket.on('deleteMessage', async ({ messageId }) => {
-      try {
-        const userId = socket.userId;
-
-        const message = await Message.findById(messageId);
-
-        if (!message) {
-          return socket.emit('messageError', { message: "Message not found." });
-        }
-
-        // Security check: ensure the user deleting the message is the one who sent it
-        if (message.sender.toString() !== userId) {
-          return socket.emit('messageError', { message: "You can only delete your own messages." });
-        }
-
-          const timeSinceSent = Date.now() - message.createdAt.getTime();
-          if (timeSinceSent > EDIT_DELETE_WINDOW_MS) {
-              return socket.emit('messageError', { message: "Time limit to delete this message has passed." });
-          }
-
-        // Soft delete: update the flag and content
-        message.isDeleted = true;
-        message.content = "This message was deleted.";
-        await message.save();
-
-        // Get the conversation participants to notify everyone in the chat
-        const conversation = await Conversation.findById(message.conversationId);
-        if (!conversation) return;
-
-        // Emit an event to all participants in the conversation
-        conversation.participants.forEach(participantId => {
-          const participantSocketId = userSocketMap[participantId.toString()];
-          if (participantSocketId) {
-            io.to(participantSocketId).emit('messageDeleted', { 
-                messageId: message._id, 
-                conversationId: message.conversationId 
-            });
-          }
+        await createNotification(io, userSocketMap, {
+          recipient: receiverId,
+          sender: senderId,
+          type: 'chat',
         });
 
+        const messageToSend = await Message.findById(newMessage._id).populate('sender', 'username avatar');
+        const conversationToSend = await Conversation.findById(conversation._id)
+          .populate({ path: 'participants', select: 'username avatar' })
+          .populate({ path: 'lastMessage', select: 'content' });
+
+        // Broadcast both the new message and the updated conversation
+        await broadcastToConversation(io, conversation._id, 'newMessage', messageToSend);
+        await broadcastToConversation(io, conversation._id, 'conversationUpdated', conversationToSend);
+
       } catch (error) {
-        console.error("Error in deleteMessage event: ", error);
-        socket.emit('messageError', { message: "Failed to delete message." });
+        console.error("Error in sendMessage:", error);
       }
     });
 
     socket.on('editMessage', async ({ messageId, newContent }) => {
       try {
-        const userId = socket.userId;
-
-        if (!newContent.trim()) {
-          return socket.emit('messageError', { message: "Message content cannot be empty." });
+        const message = await Message.findOne({ _id: messageId, sender: socket.userId });
+        if (!message || Date.now() - message.createdAt.getTime() > EDIT_DELETE_WINDOW_MS) {
+          return; // Silently fail if message not found, not owner, or time expired
         }
 
-        const message = await Message.findById(messageId);
-
-        if (!message) {
-          return socket.emit('messageError', { message: "Message not found." });
-        }
-        
-        // Security check: ensure the user editing the message is the sender
-        if (message.sender.toString() !== userId) {
-          return socket.emit('messageError', { message: "You can only edit your own messages." });
-        }
-        
-        // Don't allow editing of already deleted messages
-        if (message.isDeleted) {
-          return socket.emit('messageError', { message: "Cannot edit a deleted message." });
-        }
-
-          const timeSinceSent = Date.now() - message.createdAt.getTime();
-          if (timeSinceSent > EDIT_DELETE_WINDOW_MS) {
-              return socket.emit('messageError', { message: "Time limit to edit this message has passed." });
-          }
-
-        // Update the content and set the edited flag
         message.content = newContent;
         message.isEdited = true;
         await message.save();
 
-        const conversation = await Conversation.findById(message.conversationId);
-        if (!conversation) return;
+        const conversation = await Conversation.findById(message.conversationId)
+          .populate({ path: 'participants', select: 'username avatar' })
+          .populate({ path: 'lastMessage', select: 'content' });
 
-        // Emit an event to all participants in the conversation
-        conversation.participants.forEach(participantId => {
-          const participantSocketId = userSocketMap[participantId.toString()];
-          if (participantSocketId) {
-            io.to(participantSocketId).emit('messageEdited', {
-              messageId: message._id,
-              conversationId: message.conversationId,
-              newContent: message.content,
-            });
-          }
-        });
+        const payload = {
+          messageId: message._id,
+          conversationId: message.conversationId,
+          newContent: message.content,
+        };
+
+        await broadcastToConversation(io, message.conversationId, 'messageEdited', payload);
+        await broadcastToConversation(io, message.conversationId, 'conversationUpdated', conversation);
 
       } catch (error) {
-        console.error("Error in editMessage event: ", error);
-        socket.emit('messageError', { message: "Failed to edit message." });
+        console.error("Error editing message:", error);
       }
     });
-    
-    // --- We will add listeners for edit, delete, and read receipts here later ---
+
+    socket.on('deleteMessage', async ({ messageId }) => {
+      try {
+        const message = await Message.findOne({ _id: messageId, sender: socket.userId });
+        if (!message || Date.now() - message.createdAt.getTime() > EDIT_DELETE_WINDOW_MS) {
+          return; // Silently fail
+        }
+
+        message.content = 'This message was deleted.';
+        message.isDeleted = true;
+        await message.save();
+
+        let conversation = await Conversation.findById(message.conversationId);
+
+        // If the deleted message was the last one, we need to find the new last message
+        if (conversation.lastMessage?.equals(message._id)) {
+          const newLastMessage = await Message.findOne({ conversationId: conversation._id }).sort({ createdAt: -1 });
+          conversation.lastMessage = newLastMessage ? newLastMessage._id : null;
+          await conversation.save();
+        }
+
+        const conversationToSend = await Conversation.findById(conversation._id)
+          .populate({ path: 'participants', select: 'username avatar' })
+          .populate({ path: 'lastMessage', select: 'content' });
+
+        const payload = {
+          messageId: message._id,
+          conversationId: message.conversationId,
+        };
+
+        await broadcastToConversation(io, message.conversationId, 'messageDeleted', payload);
+        await broadcastToConversation(io, message.conversationId, 'conversationUpdated', conversationToSend);
+
+      } catch (error) {
+        console.error("Error deleting message:", error);
+      }
+    });
+
+    // Typing Listeners
+
+    socket.on('startTyping', ({ conversationId }) => {
+      // Broadcast to all other sockets in the conversation EXCEPT the sender
+      socket.to(conversationId).emit('typingStarted', { conversationId });
+    });
+
+    socket.on('stopTyping', ({ conversationId }) => {
+      // Broadcast to all other sockets in the conversation EXCEPT the sender
+      socket.to(conversationId).emit('typingStopped', { conversationId });
+    });
+
+    socket.on('joinRoom', (conversationId) => {
+      socket.join(conversationId);
+      console.log(`User ${userId} joined room ${conversationId}`);
+    });
+
+    socket.on('leaveRoom', (conversationId) => {
+      socket.leave(conversationId);
+      console.log(`User ${userId} left room ${conversationId}`);
+    });
 
     socket.on('disconnect', () => {
       console.log(`User disconnected: ${userId}`);
-      // Remove user from the map on disconnect
       delete userSocketMap[userId];
-      // Update online user list for all clients
       io.emit('getOnlineUsers', Object.keys(userSocketMap));
     });
   });
 }
 
-module.exports = socketHandler;
+module.exports = { socketHandler, userSocketMap };
 
 //uploads
+
+//utils
+///createNotification.js
+// server/utils/createNotification.js
+const Notification = require('../models/Notification');
+
+/**
+ * A reusable function to create and emit notifications.
+ * @param {object} io - The Socket.IO server instance.
+ * @param {object} userSocketMap - The map of online users.
+ * @param {object} details - The notification details.
+ * @param {string} details.recipient - The ID of the user receiving the notification.
+ * @param {string} details.sender - The ID of the user who triggered the notification.
+ * @param {string} details.type - The type of notification ('like', 'comment', etc.).
+ * @param {string} [details.post] - The optional ID of the related post.
+ */
+const createNotification = async (io, userSocketMap, { recipient, sender, type, post }) => {
+    try {
+        // CRITICAL: Do not create a notification if a user is interacting with their own content.
+        if (recipient.toString() === sender.toString()) {
+            return;
+        }
+
+        // For chat notifications, we use a smart "upsert" to avoid spam.
+        if (type === 'chat') {
+            // Find and update one, or create it if it doesn't exist.
+            // This ensures only one "new message" notification per user.
+            await Notification.findOneAndUpdate(
+                { recipient, sender, type: 'chat' },
+                { $set: { read: false }, $inc: { __v: 1 } }, // Re-mark as unread and update timestamp
+                { upsert: true, new: true }
+            );
+        } else {
+            // For all other types, create a new notification every time.
+            const notification = new Notification({ recipient, sender, type, post });
+            await notification.save();
+        }
+
+        // Get a fresh count of all unread notifications for the recipient.
+        const unreadCount = await Notification.countDocuments({ recipient, read: false });
+
+        // Find the recipient's socket ID if they are online.
+        const recipientSocketId = userSocketMap[recipient.toString()];
+        if (recipientSocketId) {
+            // If they are online, send a real-time event with the new unread count.
+            // We'll also tell the client to refetch its notification list.
+            io.to(recipientSocketId).emit('newNotification', { unreadCount });
+        }
+    } catch (error) {
+        console.error('Error creating notification:', error);
+    }
+};
+
+module.exports = createNotification;
+
 //.env
-MONGO_URI=mongodb://localhost:27017/blogdb
+MONGO_URI=mongodb+srv://blogUser:s9K3p%24Z%40vW%21b8Hq@cluster0.5mfj55l.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 JWT_SECRET=supersecretkey123
 PORT=5000
 REACT_APP_API_URL=http://localhost:5000
@@ -4544,7 +5498,7 @@ const http = require('http');
 const { Server } = require("socket.io");
 
 // Import our new socket logic handler (we will create this file next)
-const socketHandler = require('./socket/socket'); 
+const { socketHandler, userSocketMap } = require('./socket/socket'); 
 
 dotenv.config();
 
@@ -4554,11 +5508,28 @@ const server = http.createServer(app);
 
 // Create a new Socket.IO server and attach it to the HTTP server.
 // It's crucial to configure CORS here as well for the WebSocket connection.
+// --- THIS IS THE CORRECTED CORS CONFIGURATION ---
+const allowedOrigins = [
+  "http://localhost:5173", // For your local development
+  process.env.CLIENT_URL,  // For your live frontend
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
 const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173", // Your React client's URL
-    methods: ["GET", "POST"]
-  }
+  cors: corsOptions
 });
 
 // Pass the `io` instance to our socket handler
@@ -4568,6 +5539,11 @@ app.use(express.json());
 app.use(cors());
 app.use('/images', express.static(path.join(__dirname, 'uploads')));
 
+app.use((req, res, next) => {
+  req.io = io;
+  req.userSocketMap = userSocketMap; // Attach the map to each request
+  next();
+});
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
@@ -4575,6 +5551,7 @@ app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/comments', require('./routes/commentRoutes'));
 app.use('/api/follow', require('./routes/followRoutes'));
 app.use('/api/chat', require('./routes/chatRoutes'));
+app.use('/api/notifications', require('./routes/notificationRoutes'));
 // We will create and add the chat routes in a later step.
 
 const PORT = process.env.PORT || 5000;
