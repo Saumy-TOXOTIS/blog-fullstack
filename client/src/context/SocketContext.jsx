@@ -3,6 +3,7 @@ import { createContext, useState, useEffect, useContext, useCallback } from 'rea
 import io from 'socket.io-client';
 import api from '../utils/api'; // Make sure api utility is imported
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const SocketContext = createContext();
 
 export const useSocket = () => {
@@ -53,7 +54,7 @@ export const SocketContextProvider = ({ children }) => {
       fetchNotifications();
       fetchConversations();
       
-      const newSocket = io("http://localhost:5000", {
+      const newSocket = io(API_URL, {
         auth: {
           token: token,
         },
