@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 @import "tailwindcss";
 
 /* Add to index.css */
