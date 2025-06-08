@@ -48,7 +48,7 @@ function AppContent() {
   };
 
   const mainContent = (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
       <Navbar isAuthenticated={!!token} logout={handleLogout} />
       <main className="flex-grow">
         <Routes>
