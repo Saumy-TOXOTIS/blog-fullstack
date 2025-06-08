@@ -3,6 +3,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import api from '../utils/api';
 import { useNavigate, useParams } from 'react-router-dom';
 import FollowListModal from './FollowListModal';
+import { getImageUrl } from '../utils/imageUrl';
 
 // Helper function to get current logged-in user ID
 function getCurrentAuthUserId() {
@@ -110,11 +111,8 @@ function UserProfile() {
   };
 
   const getAvatarSrc = (user) => {
-    if (!user) return `https://ui-avatars.com/api/?name=?&background=71717a&color=fff&size=128`;
-    const defaultAvatar = "http://localhost:5000/images/default_profile.jpg";
-    if (user.avatar && user.avatar.startsWith('http')) return user.avatar;
-    if (user.avatar && user.avatar.startsWith('/images/')) return `http://localhost:5000${user.avatar}`;
-    return defaultAvatar;
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
   };
 
   if (loading) {

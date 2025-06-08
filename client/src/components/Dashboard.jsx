@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Profile from './Profile';
 import LikeButton from './LikeButton';
 import Comment from './Comment'; // Your updated Comment component
+import { getImageUrl } from '../utils/imageUrl';
 
 // Helper function to decode JWT
 function getCurrentUserId() {
@@ -208,7 +209,7 @@ function Dashboard() {
                   <div className="p-5 relative z-10">
                     {/* Post Header, Image, Content, LikeButton ... (Keep your existing structure) */}
                     <div className="flex items-start gap-4"> <div className="flex-shrink-0"> <div className="relative"> <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur opacity-20 group-hover:opacity-30 transition-opacity"></div> <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 p-0.5"> <div className="bg-gray-900 rounded-full p-1"> <div className="bg-gray-800 rounded-full w-full h-full flex items-center justify-center"> <span className="text-sm font-bold bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text text-transparent"> {post.author.username.charAt(0).toUpperCase()} </span> </div> </div> </div> </div> </div> <div className="flex-1 min-w-0"> <h3 className="text-lg font-bold group-hover:text-purple-300 transition-colors bg-gradient-to-r from-purple-100/90 to-cyan-100/90 bg-clip-text text-transparent"> {post.title} </h3> <p className="text-sm text-gray-400 mt-1"> By: <span className="text-purple-400">{post.author.username}</span> </p> <p className="text-xs text-gray-500 mt-1"> {new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })} </p> </div> </div>
-                    <div className="mt-5"> {post.imageUrl && (<div className="mb-4 rounded-xl overflow-hidden border border-gray-700/50 group-hover:border-purple-500/30 transition-colors"> <img src={`${post.imageUrl.startsWith('/') ? 'http://localhost:5000' : ''}${post.imageUrl}`} alt={post.title} className="w-full h-48 object-cover group-hover:scale-[1.02] transition-transform duration-300" /> </div>)} <div
+                    <div className="mt-5"> {post.imageUrl && (<div className="mb-4 rounded-xl overflow-hidden border border-gray-700/50 group-hover:border-purple-500/30 transition-colors"> <img src={getImageUrl(post.imageUrl)} alt={post.title} className="w-full h-48 object-cover group-hover:scale-[1.02] transition-transform duration-300" /> </div>)} <div
                       className="text-gray-300 line-clamp-3 prose prose-invert max-w-none"
                       dangerouslySetInnerHTML={{ __html: post.content }}
                     /> </div>

@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import FollowListModal from './FollowListModal';
+import { getImageUrl } from '../utils/imageUrl';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -69,11 +70,8 @@ export default function Profile() {
   };
 
   const getAvatarSrc = (currentUser) => {
-    if (!currentUser) return "http://localhost:5000/images/default_profile.jpg";
-    const defaultAvatar = "http://localhost:5000/images/default_profile.jpg";
-    if (currentUser.avatar && currentUser.avatar.startsWith('http')) return currentUser.avatar;
-    if (currentUser.avatar && currentUser.avatar.startsWith('/images/')) return `http://localhost:5000${currentUser.avatar}`;
-    return defaultAvatar;
+    if (!currentUser || !currentUser.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(currentUser.avatar); // 2. Use the helper
   };
 
   if (loading) {

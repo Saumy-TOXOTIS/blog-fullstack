@@ -1,6 +1,7 @@
 // client/src/components/Comment.jsx
 import React, { useState } from 'react';
 import api from '../utils/api';
+import { getImageUrl } from '../utils/imageUrl';
 
 // ReplyForm sub-component (can be in its own file if preferred)
 function ReplyForm({ postId, parentId, onCommentAdded, onCancel, currentUserId }) {
@@ -71,14 +72,11 @@ function Comment({ comment, currentUserId, onDeleteComment, onCommentAdded, allC
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
     const getAvatarSrc = (author) => {
-        if (!author) return `https://ui-avatars.com/api/?name=?&background=71717a&color=fff&size=128`; // Default for missing author
-        if (author.avatar && author.avatar.startsWith('http')) {
-            return author.avatar;
+        if (!author || !author.avatar) {
+            // Create a placeholder avatar URL
+            return `https://ui-avatars.com/api/?name=${encodeURIComponent(author?.username || '?')}&background=random&color=fff&size=128`;
         }
-        if (author.avatar) { // Assuming relative path like /images/avatar.jpg
-            return `http://localhost:5000${author.avatar}`;
-        }
-        return `https://ui-avatars.com/api/?name=${encodeURIComponent(author.username || 'User')}&background=random&color=fff&size=128`;
+        return getImageUrl(author.avatar); // 2. Use the helper
     };
 
     const avatarSrc = getAvatarSrc(comment.author);

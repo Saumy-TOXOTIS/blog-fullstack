@@ -1,16 +1,14 @@
 // client/src/components/UserListItem.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUrl';
 
 const UserListItem = ({ user, onModalClose }) => {
   const navigate = useNavigate();
 
-  const getAvatarSrc = (listUser) => {
-    if (!listUser) return `https://ui-avatars.com/api/?name=?&background=71717a&color=fff&size=128`;
-    const defaultAvatar = "http://localhost:5000/images/default_profile.jpg";
-    if (listUser.avatar && listUser.avatar.startsWith('http')) return listUser.avatar;
-    if (listUser.avatar && listUser.avatar.startsWith('/images/')) return `http://localhost:5000${listUser.avatar}`;
-    return defaultAvatar;
+  const getAvatarSrc = (user) => {
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
   };
 
   const handleNavigate = () => {
