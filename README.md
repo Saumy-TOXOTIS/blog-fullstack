@@ -1,10 +1,10 @@
-# Blog Verse - A Full-Stack Social Blogging Platform
+# Blog App - A Full-Stack Social Blogging Platform
 
 ![Blog App Logo](server/uploads/Blog.svg) <!-- Optional: Add a small logo if you like -->
 
 ## ✨ About The Project ✨
 
-**Blog Verse** is a modern, full-stack social blogging platform built to connect users and facilitate seamless sharing of ideas. Inspired by the need for a dynamic and interactive space for content creators, Blog Verse offers a comprehensive suite of features, from real-time communication to rich content publishing. This project showcases a robust implementation of the MERN stack with a strong emphasis on real-time capabilities using Socket.IO and a polished user experience designed with Tailwind CSS.
+**Blog App** is a modern, full-stack social blogging platform built to connect users and facilitate seamless sharing of ideas. Inspired by the need for a dynamic and interactive space for content creators, Blog Verse offers a comprehensive suite of features, from real-time communication to rich content publishing. This project showcases a robust implementation of the MERN stack with a strong emphasis on real-time capabilities using Socket.IO and a polished user experience designed with Tailwind CSS.
 
 It serves as a demonstration of building complex, real-time applications from the ground up.
 
@@ -151,9 +151,7 @@ This project was developed with invaluable guidance and expertise. Special thank
 
 Connect with me!
 
-*   **GitHub:** [https://github.com/Saumy-TOXOTIS](https://github.com/Saumy-TOXOTIS) <-- **Replace with your GitHub profile URL**
-
-*(Consider adding links to your LinkedIn or personal portfolio website here too!)*
+*   **GitHub:** [https://github.com/Saumy-TOXOTIS](https://github.com/Saumy-TOXOTIS)
 
 ---
 
