@@ -40,7 +40,8 @@
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
     "vite": "^6.3.5",
-    "vite-plugin-rewrite-all": "^1.0.2"
+    "vite-plugin-rewrite-all": "^1.0.2",
+    "vite-plugin-single-spa": "^1.0.0"
   },
   "proxy": "http://localhost:5000"
 }
