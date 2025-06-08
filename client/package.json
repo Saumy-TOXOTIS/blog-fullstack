@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "build:vercel": "rm -rf node_modules package-lock.json && npm install --legacy-peer-deps && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,6 +21,7 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-quill": "^2.0.0",
+    "react-router-dom": "^7.6.2",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.1.7"
