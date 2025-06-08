@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/((?!api/|images/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/:path((?!api/|images/).*)", "destination": "/" }
   ]
 }
