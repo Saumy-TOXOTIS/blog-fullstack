@@ -10,7 +10,7 @@ exports.createPost = async (req, res) => {
   try {
     let imageUrl = '/images/default-post-image.jpg'; // Default image URL
     if (req.file) {
-      imageUrl = `/images/${req.file.filename}`; // Use uploaded image URL
+      imageUrl = req.file.path; // Use uploaded image URL
     }
     const post = new Post({
       title,
@@ -88,7 +88,7 @@ exports.updatePost = async (req, res) => {
     post.content = content || post.content;
 
     if(req.file) {
-      post.imageUrl = `/images/${req.file.filename}`; // Update image URL if a new file is uploaded
+      imageUrl = req.file.path; // Update image URL if a new file is uploaded
     }
 
     await post.save();

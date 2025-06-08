@@ -4,7 +4,7 @@ const path = require('path');
 const router = express.Router();
 const postController = require('../controllers/postController');
 const authMiddleware = require('../middleware/authMiddleware');
-const upload = require('../middleware/uploadMiddleware');
+const upload = require('../config/cloudinary');
 
 router.use(authMiddleware);
 
