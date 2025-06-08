@@ -42,5 +42,11 @@
     "tailwindcss": "^4.1.8",
     "vite": "^6.3.5"
   },
+  "overrides": {
+    "react-quill": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "proxy": "http://localhost:5000"
 }
