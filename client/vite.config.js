@@ -1,15 +1,13 @@
 // client/vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from 'tailwindcss' // Corrected import
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // The tailwindcss() plugin will automatically find and use your new tailwind.config.js
-  plugins: [react(), tailwindcss()], 
+  // We REMOVED tailwindcss() from here.
+  plugins: [react()], 
   
-  // You can remove the server config for deployment, but it's fine to leave it.
-  // Vercel will ignore it.
+  // The server config can remain for your local ngrok setup.
   server: {
     host: '0.0.0.0',
     allowedHosts: [

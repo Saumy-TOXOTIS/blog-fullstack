@@ -1,3 +1,4 @@
+// client/tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,7 +8,9 @@ export default {
   theme: {
     extend: {},
   },
+  // We no longer need to require typography here.
+  // PostCSS will handle it automatically.
   plugins: [
-    require('@tailwindcss/typography'), // It is safe to use require() here
+    require('@tailwindcss/typography'),
   ],
 }
