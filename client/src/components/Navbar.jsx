@@ -15,9 +15,10 @@ const DesktopNavLink = ({ to, text, icon, color, onClick }) => (
 );
 
 // --- Mobile NavLink Component (No Changes) ---
+// NEW, CORRECTED CODE
 const MobileNavLink = ({ icon, text, onClick }) => (
-  <button onClick={onClick} className="w-full flex items-center gap-4 p-4 text-lg text-gray-200 rounded-xl hover:bg-purple-500/10 transition-all duration-200 group relative overflow-hidden">
-    <div className="p-2 bg-gray-800/50 rounded-lg border border-gray-700 group-hover:bg-purple-600/50 group-hover:border-purple-500 transition-colors text-purple-300 group-hover:text-white">{icon}</div>
+  <button onClick={onClick} className="w-full flex items-center gap-4 p-4 text-lg text-gray-200 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-200 group relative overflow-hidden">
+    <div className="p-2 bg-gray-900/50 rounded-lg border border-gray-700 group-hover:bg-purple-600/50 group-hover:border-purple-500 transition-colors text-purple-300 group-hover:text-white">{icon}</div>
     <span className="font-semibold tracking-wider">{text}</span>
     <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine" />
   </button>
@@ -93,18 +94,18 @@ function Navbar({ isAuthenticated, logout }) {
         <div className={`absolute top-0 right-0 h-full w-4/5 max-w-sm p-1 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="relative h-full bg-[#111827e6] rounded-2xl border border-purple-500/20 p-6 flex flex-col">
             <div className="absolute -inset-px rounded-2xl -z-10 bg-gradient-to-r from-purple-600 via-cyan-500 to-purple-600 animate-gradient-border"></div>
-            <div className="flex items-center gap-3 mb-10">
+            <div className="flex items-center gap-3 mb-4">
               <img src={getImageUrl("/images/Blog.svg")} className="h-10 w-10" alt="App Icon" />
               <h2 className="text-xl font-bold">Menu</h2>
             </div>
-            <div className="flex flex-col gap-y-2">
+            <div className="bg-[#111827e6] flex flex-col gap-y-2">
               <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} text="About" onClick={() => navigate('/about')} />
               {isAuthenticated && navLinks.map(link => (
                 <MobileNavLink key={link.to} {...link} icon={React.cloneElement(link.icon, { className: "w-6 h-6" })} onClick={() => navigate(link.to)} />
               ))}
             </div>
             {isAuthenticated && (
-              <div className="mt-auto pt-6 border-t border-gray-700/50">
+              <div className="bg-[#111827e6] mt-auto pt-2 border-t border-gray-700/50">
                 <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>} text="Logout" onClick={logout} />
               </div>
             )}
