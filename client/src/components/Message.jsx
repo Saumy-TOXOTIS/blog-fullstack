@@ -1,6 +1,7 @@
 // client/src/components/Message.jsx
 import { useState } from 'react';
 import { useSocket } from '../context/SocketContext';
+import { getImageUrl } from '../utils/imageUrl';
 
 const EDIT_DELETE_WINDOW_MS = 15 * 60 * 1000;
 
@@ -39,6 +40,10 @@ function Message({ message }) {
       socket.emit('deleteMessage', { messageId: message._id });
     }
   };
+  const getAvatarSrc = (user) => {
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
+  };
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +61,7 @@ function Message({ message }) {
         onMouseLeave={() => setShowOptions(false)}
       >
         {!isFromMe && (
-          <img src={`http://localhost:5000${message.sender.avatar}`} alt="avatar" className="w-8 h-8 rounded-full self-start" />
+          <img src={getAvatarSrc(message.sender)} alt="avatar" className="w-8 h-8 rounded-full self-start" />
         )}
 
         {/* Message Options (Edit and Delete Buttons) */}

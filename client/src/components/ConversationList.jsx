@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import api from '../utils/api';
 import { useSocket } from '../context/SocketContext';
+import { getImageUrl } from '../utils/imageUrl';
 
 // Enhanced Conversation Item Component
 function Conversation({ conversation, onSelect, isSelected, onAction, isHiddenList }) {
@@ -9,6 +10,11 @@ function Conversation({ conversation, onSelect, isSelected, onAction, isHiddenLi
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const otherUser = conversation.participants[0];
+  console.log(otherUser);
+  const getAvatarSrc = (user) => {
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
+  };
   
   // Close menu when clicking outside
   useEffect(() => {
@@ -43,7 +49,7 @@ function Conversation({ conversation, onSelect, isSelected, onAction, isHiddenLi
         <div className={`w-12 h-12 rounded-full p-0.5 ${isOnline ? 'bg-gradient-to-br from-green-400 to-emerald-500' : 'bg-gradient-to-br from-purple-600 to-blue-500'}`}>
           <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
             <img 
-              src={`http://localhost:5000${otherUser.avatar}`} 
+              src={getAvatarSrc(otherUser)} 
               alt={otherUser.username} 
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />

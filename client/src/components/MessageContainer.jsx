@@ -4,6 +4,7 @@ import api from '../utils/api';
 import Message from './Message';
 import MessageInput from './MessageInput';
 import { useSocket } from '../context/SocketContext';
+import { getImageUrl } from '../utils/imageUrl';
 
 // Helper function to get the current user's ID
 function getCurrentUserId() {
@@ -30,6 +31,10 @@ function MessageContainer({ selectedConversation }) {
   // Get the messages for THIS conversation from the global messages object
   const currentMessages = selectedConversation ? messages[selectedConversation._id] || [] : [];
 
+  const getAvatarSrc = (user) => {
+    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    return getImageUrl(user.avatar); // 2. Use the helper
+  };
   // This useEffect ONLY fetches historical messages when a new chat is selected
   useEffect(() => {
     const fetchMessages = async () => {
@@ -110,7 +115,7 @@ function MessageContainer({ selectedConversation }) {
       {/* Header */}
       {otherUser && (
         <div className="flex items-center gap-4 p-4 border-b border-gray-700/50 bg-gray-900/30">
-          <img src={`http://localhost:5000${otherUser.avatar}`} alt={otherUser.username} className="w-10 h-10 rounded-full object-cover" />
+          <img src={getAvatarSrc(otherUser)} alt={otherUser.username} className="w-10 h-10 rounded-full object-cover" />
           <h3 className="font-bold text-lg text-white">{otherUser.username}</h3>
         </div>
       )}
@@ -126,7 +131,7 @@ function MessageContainer({ selectedConversation }) {
         {isTyping && (
           <div className="flex justify-start">
             <div className="flex items-center gap-2">
-              <img src={`http://localhost:5000${otherUser.avatar}`} alt="avatar" className="w-8 h-8 rounded-full" />
+              <img src={getAvatarSrc(otherUser)} alt="avatar" className="w-8 h-8 rounded-full" />
               <div className="px-4 py-2.5 rounded-2xl text-white bg-gray-700 rounded-bl-none shadow-md">
                 <div className="flex items-center justify-center gap-1">
                   <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
