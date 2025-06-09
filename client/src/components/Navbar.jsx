@@ -4,16 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import NotificationBell from './NotificationBell';
 import { getImageUrl } from '../utils/imageUrl';
 
-// --- Desktop NavLink Component (No Changes) ---
-const DesktopNavLink = ({ to, text, icon, color, onClick }) => (
-  <button onClick={onClick} className={`relative group flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-gray-800/70 hover:bg-gray-700/80 border border-gray-700 rounded-xl hover:border-${color}-500 transition-all duration-300 hover:shadow-${color}-900/30 shadow-md`}>
-    <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-${color}-500/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-    {icon}
-    <span className={`font-medium text-xs md:text-sm bg-gradient-to-r from-${color}-200 to-blue-200 bg-clip-text text-transparent`}>{text}</span>
-    <div className={`absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-${color}-500 to-blue-500 rounded-full transition-all duration-300 group-hover:left-0 group-hover:w-full`}></div>
-  </button>
-);
-
 // --- Mobile NavLink Component (No Changes) ---
 // NEW, CORRECTED CODE
 const MobileNavLink = ({ icon, text, onClick }) => (
@@ -42,15 +32,13 @@ function Navbar({ isAuthenticated, logout }) {
     { to: '/chat', text: 'Chat', color: 'cyan', icon: <svg className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg> },
   ];
 
-  const coloredIcon = (icon, color) => React.cloneElement(icon, { className: `${icon.props.className} text-${color}-400 group-hover:text-${color}-300 transition-colors` });
-
   return (
     <nav className="bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-purple-900/30 sticky top-0 z-50 border-b border-gray-700/50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}>
-            <img src={getImageUrl("/images/Blog.svg")} className="h-12 w-12 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110" alt="App Icon" />
+            <img src={getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749428242/Blog_l3xelq.svg")} className="h-12 w-12 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110" alt="App Icon" />
             <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">Blog <span className="font-extrabold">App</span></h1>
           </div>
 

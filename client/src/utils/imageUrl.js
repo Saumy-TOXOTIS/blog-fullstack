@@ -10,7 +10,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 export const getImageUrl = (imagePath) => {
   if (!imagePath) {
     // Return a default image or an empty string if no path is provided
-    return `${API_URL}/images/default_profile.jpg`; 
+    return "https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749425553/default_profile_mmb0hk.jpg"; 
   }
   // If the path already starts with http, it's likely an external URL (e.g., from a Google account)
   if (imagePath.startsWith('http')) {
