@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   imageUrl: {
     type: String,
-    default: "https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749430718/default-post-image_zh7yda.png",
+    default: "",
   },
   likes: [{
     type: mongoose.Schema.Types.ObjectId,

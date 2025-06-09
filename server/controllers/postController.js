@@ -8,7 +8,7 @@ const createNotification = require('../utils/createNotification');
 exports.createPost = async (req, res) => {
   const { title, content } = req.body;
   try {
-    let imageUrl = '/images/default-post-image.jpg'; // Default image URL
+    let imageUrl = ""; // Default image URL
     if (req.files && req.files.length > 0) {
       imageUrl = req.files[0].path;
     }

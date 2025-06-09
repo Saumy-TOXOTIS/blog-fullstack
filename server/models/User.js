@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   bio: { type: String, default: '' },
-  avatar: { type: String, default: "https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749425553/default_profile_mmb0hk.jpg" }, // Ensure a default
+  avatar: { type: String, default: "" }, // Ensure a default
   createdAt: {
     type: Date,
     default: Date.now
