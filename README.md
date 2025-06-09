@@ -1,6 +1,6 @@
 # Blog App - A Full-Stack Social Blogging Platform
 
-![Blog Verse Logo](https://raw.githubusercontent.com/Saumy-TOXOTIS/blog-fullstack/main/server/uploads/Blog.svg)
+![Blog App Logo](https://raw.githubusercontent.com/Saumy-TOXOTIS/blog-fullstack/main/client/public/Blog.svg)
 
 ## ✨ About The Project ✨
 
