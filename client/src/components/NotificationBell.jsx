@@ -87,12 +87,12 @@ const NotificationItem = ({ notification }) => {
                     <div className="relative">
                         <img
                             src={getAvatarSrc(notification.sender)}
-                            alt={notification.sender.username}
+                            alt={notification.sender?.username}
                             className="w-7 h-7 rounded-full object-cover border-2 border-indigo-500/30 shadow-sm"
                         />
                         <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900"></div>
                     </div>
-                    <p className="text-white font-medium truncate">{notification.sender.username}</p>
+                    <p className="text-white font-medium truncate">{notification.sender?.username}</p>
                 </div>
                 
                 <p className="text-sm text-indigo-100">
