@@ -145,7 +145,7 @@ function AuthForm({ isLogin: initialIsLogin = true }) {
                 
                 {/* Logo Image */}
                 <img 
-                  src={getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749428242/Blog_l3xelq.svg")} 
+                  src={getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749434518/Blog_qf6yu9.svg")} 
                   className="w-14 h-14 transition-all duration-500 group-hover/logo:scale-110 group-hover/logo:brightness-110"
                   alt="App Icon"
                 />
