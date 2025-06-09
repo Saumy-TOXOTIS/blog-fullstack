@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSocket } from '../context/SocketContext';
 import api from '../utils/api';
+import { getImageUrl } from '../utils/imageUrl';
 
 const NotificationItem = ({ notification }) => {
     const navigate = useNavigate();
@@ -13,6 +14,11 @@ const NotificationItem = ({ notification }) => {
         } else if (notification.post?._id) {
             navigate(`/dashboard`);
         }
+    };
+
+    const getAvatarSrc = (user) => {
+        if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+        return getImageUrl(user.avatar); // 2. Use the helper
     };
 
     const notificationIcons = {
@@ -80,7 +86,7 @@ const NotificationItem = ({ notification }) => {
                 <div className="flex items-center gap-2 mb-1">
                     <div className="relative">
                         <img
-                            src={`http://localhost:5000${notification.sender.avatar}`}
+                            src={getAvatarSrc(notification.sender)}
                             alt={notification.sender.username}
                             className="w-7 h-7 rounded-full object-cover border-2 border-indigo-500/30 shadow-sm"
                         />
