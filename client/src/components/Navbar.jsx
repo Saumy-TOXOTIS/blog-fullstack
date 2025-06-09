@@ -122,17 +122,17 @@ function Navbar({ isAuthenticated, logout }) {
               <img src={getImageUrl("/images/Blog.svg")} className="h-10 w-10" alt="App Icon" />
               <h2 className="text-xl font-bold">Menu</h2>
             </div>
-            <div className="bg-[#111827e6] flex flex-col gap-y-2">
-              <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} text="About" onClick={() => navigate('/about')} />
-              {isAuthenticated && navLinks.map(link => (
-                <MobileNavLink key={link.to} {...link} icon={React.cloneElement(link.icon, { className: "w-6 h-6" })} onClick={() => navigate(link.to)} />
-              ))}
+            <div className="rounded-xl p-2 bg-[#111827e6] flex flex-col gap-y-2">
+              <>
+                <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} text="About" onClick={() => navigate('/about')} />
+                {isAuthenticated && navLinks.map(link => (
+                  <MobileNavLink key={link.to} {...link} icon={React.cloneElement(link.icon, { className: "w-6 h-6" })} onClick={() => navigate(link.to)} />
+                ))}
+                {isAuthenticated && (
+                  <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>} text="Logout" onClick={logout} />
+                )}
+              </>
             </div>
-            {isAuthenticated && (
-              <div className="bg-[#111827e6] mt-auto pt-2 border-t border-gray-700/50">
-                <MobileNavLink icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>} text="Logout" onClick={logout} />
-              </div>
-            )}
           </div>
         </div>
       </div>
