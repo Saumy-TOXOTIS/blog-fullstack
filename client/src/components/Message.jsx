@@ -41,7 +41,7 @@ function Message({ message }) {
     }
   };
   const getAvatarSrc = (user) => {
-    if (!user || !user.avatar) return getImageUrl('/images/default_profile.jpg');
+    if (!user || !user.avatar) return getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749432192/default_profile_avatar_lvdgfa.svg");
     return getImageUrl(user.avatar); // 2. Use the helper
   };
 

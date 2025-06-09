@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="500px" height="500px" fill-rule="nonzero"><g transform=""><g fill="#8e24aa" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(9.84615,9.84615)"><path d="M5,0v11l3,5l3,-5v-7h11c0.55078,0 1,0.44922 1,1v11h-15l1.96875,3.28125l-0.25,0.1875l-2.71875,2.25v-2.71875h-3c-0.55078,0 -1,-0.44922 -1,-1v-13c0,-0.55078 0.44922,-1 1,-1v-2c-1.65625,0 -3,1.34375 -3,3v13c0,1.65625 1.34375,3 3,3h1v5l6,-5h11c1.65625,0 3,-1.34375 3,-3v-13c0,-1.65625 -1.34375,-3 -3,-3h-11v-2zM8,10l2,0.65625v0.0625l-1.5625,2.59375h-0.875l-1.5625,-2.59375v-0.0625z"></path></g></g></g></svg>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- The classic, elegant gradient. No distractions. -->
+    <linearGradient id="maestroGradient" x1="48" y1="20" x2="208" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A050D8"/>
+      <stop offset="1" stop-color="#48D1CC"/>
+    </linearGradient>
+  </defs>
+  <!-- The entire logo is a single, continuous path for ultimate cohesion -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M104 20H80C68.9543 20 60 28.9543 60 40V216C60 227.046 68.9543 236 80 236H104C152.957 236 192 196.957 192 148C192 129.56 185.395 112.553 174.581 99.419C185.395 86.285 192 69.2783 192 50.8384C192 28.3262 173.447 20 144 20H104ZM104 148V212C138.582 212 168 182.582 168 148C168 113.418 138.582 84 104 84V148ZM104 44V84H128C145.673 84 160 69.1784 160 50.8384C160 35.8038 147.666 44 128 44H104Z" fill="url(#maestroGradient)"/>
+</svg>

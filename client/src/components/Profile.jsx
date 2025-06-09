@@ -102,7 +102,7 @@ export default function Profile() {
   };
 
   const getAvatarSrc = (currentUser) => {
-    if (!currentUser || !currentUser.avatar) return getImageUrl('/images/default_profile.jpg');
+    if (!currentUser || !currentUser.avatar) return getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749432192/default_profile_avatar_lvdgfa.svg");
     return getImageUrl(currentUser.avatar); // 2. Use the helper
   };
 

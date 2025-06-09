@@ -39,7 +39,7 @@ function Footer() {
                                 <div className="relative">
                                     <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
                                     <img 
-                                        src={getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749428242/Blog_l3xelq.svg")} 
+                                        src={getImageUrl("https://res.cloudinary.com/dkkzhqs6z/image/upload/v1749434518/Blog_qf6yu9.svg")} 
                                         className="relative w-14 h-14 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
                                         alt="App Icon"
                                     />
