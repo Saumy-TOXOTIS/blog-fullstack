@@ -12,7 +12,7 @@ From rich text post creation to live private messaging, Blog Verse serves as a c
 
 Experience Blog Verse live!
 
-*   **Live Application (Frontend on Render):** **[https://blog-fullstack-frontend-uurb.onrender.com](https://blog-fullstack-frontend-uurb.onrender.com)**
+*   **Live Application (Frontend on Render):** **[Blog App](https://blog-fullstack-frontend-uurb.onrender.com)**
 *   **Backend API (Backend on Render):** **[https://blog-fullstack-wjoy.onrender.com](https://blog-fullstack-wjoy.onrender.com)**
     *(Note: This is a backend API only. You won't see a website here, but it's the server powering the live application.)*
 
