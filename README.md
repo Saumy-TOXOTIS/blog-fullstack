@@ -132,4 +132,4 @@ This project was developed with invaluable guidance and expertise. Special thank
 
 **Saumy Tiwari**
 
-*   **GitHub:** [https://github.com/Saumy-TOXOTIS](https://github.com/Saumy-TOXOTIS)
+*   **GitHub:** [Saumy-TOXOTIS](https://github.com/Saumy-TOXOTIS)
